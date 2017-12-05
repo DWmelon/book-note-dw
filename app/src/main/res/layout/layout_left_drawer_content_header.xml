@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_backdrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        fresco:actualImageScaleType="centerCrop" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_gradient_transparent"
+        android:scaleType="fitXY"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_layout_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <com.simplenote.widgets.CircleImageView
+            android:id="@+id/civ_user_logo"
+            android:layout_width="@dimen/user_logo_radius"
+            android:layout_height="@dimen/user_logo_radius"
+            android:layout_marginLeft="@dimen/margin_20"
+            fresco:actualImageScaleType="centerCrop"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/civ_user_logo"
+            android:layout_alignTop="@+id/civ_user_logo"
+            android:layout_alignBaseline="@+id/civ_user_logo"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/margin_15">
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_15"
+                android:text="小丸子"
+                android:textColor="@color/primary_white"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/tv_user_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017-7-18"
+                android:textColor="@color/primary_white"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_layout_unlogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="20dp"
+        android:paddingBottom="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_go_login"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="@color/primary_white"
+            android:textSize="16sp"
+            android:background="@drawable/bg_corner_primary"/>
+
+        <TextView
+            android:id="@+id/tv_go_sign"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:gravity="center"
+            android:text="注册"
+            android:textColor="@color/primary_white"
+            android:textSize="16sp"
+            android:background="@drawable/bg_corner_primary"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

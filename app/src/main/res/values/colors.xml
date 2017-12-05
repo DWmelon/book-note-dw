@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_bg">#F5F5F5</color>
+
+    <color name="primary_color">#E45E46</color>
+    <color name="primary_color_light">#F8AE9F</color>
+    <color name="primary_dark_color">#282E4B</color>
+    <color name="primary_light_color">#3D457F</color>
+    <color name="primary_black">#000000</color>
+    <color name="primary_blue">#327FCFDC</color>
+    <color name="primary_red">#ff3300</color>
+    <color name="primary_white">#ffffff</color>
+    <color name="primary_line_light">#eeeeee</color>
+    <color name="primary_line">#D3D3D3</color>
+    <color name="primary_list_divide_line">#F3F3F3</color>
+
+    <color name="first_title_color">#39394A</color>
+    <color name="first_title_color_light">#5D5F5F</color>
+
+    <color name="transparent_white_30">#48ffffff</color>
+
+    <color name="transparent_white_50">#80ffffff</color>
+
+    <color name="transparent_10">#05000000</color>
+
+    <color name="transparent_15">#24000000</color>
+
+    <color name="transparent_50">#80000000</color>
+
+    <color name="transparent_25">#40000000</color>
+
+    <color name="transparent_90">#ee000000</color>
+
+
+    <color name="tab_bar_txt">#606060</color>
+    <color name="time_line">#aaE6E6E6</color>
+
+    <color name="sub_title_color">#9E9EAE</color>
+
+    <color name="primary_blue_light">#84C4FF</color>
+    <color name="primary_green_light">#6DD09D</color>
+    <color name="primary_yellow">#FADC74</color>
+
+    <!-- home -->
+    <color name="home_pen_gray">#bfbfbf</color>
+
+    <!--login -->
+    <color name="login_et_frame_color">#CBCBCB</color>
+    <color name="login_et_hint_color">#BEBEBE</color>
+    <color name="et_bg_line_color">#CAC8D4</color>
+    <color name="tab_indicator_txt_unselected2">#E2E7E9</color>
+    <color name="btn_not_active_color">#e1e1e1</color>
+    <color name="select_second_lab_color">#9e9eae</color>
+    <color name="login_get_vc_default_color">#ceccd7</color>
+    <color name="line_color_thr">#e3e3e3</color>
+
+    <!-- material dialog-->
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow">#10000000</color>
+    <color name="lite_blue">#ff359ff2</color>
+    <color name="transparent">#00000000</color>
+    <color name="window_background">#00000000</color>
+    <color name="default_pressed_color">#33000000</color><!-- 40b4c7-->
+    <color name="progress_color">#E45E46</color>
+
+    <!-- 拍照 -->
+    <color name="bg_take_phone">#e6e6e6</color>
+    <color name="popup_title_color">#c9cdd1</color>
+    <color name="advance_setting_item_bg">#f8f8f8</color>
+    <color name="common_title_text">#565555</color>
+    <color name="text_bg_color">#999999</color>
+    <color name="none_color">#00000000</color>
+    <color name="bule_overlay">#660D92DD</color>
+
+    <color name="control_background">#cc4285f4</color>
+
+    <!-- 选照片 -->
+    <color name="top_bar_black_marlin">#393A3F</color>
+
+    <!-- add note-->
+    <color name="add_note_bar_menu">#F3F3F3</color>
+
+    <!-- setting -->
+    <color name="item_selected_color">#F2F2F2</color>
+
+
+</resources>

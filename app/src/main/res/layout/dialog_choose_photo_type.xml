@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_corner_white">
+
+        <LinearLayout
+            android:id="@+id/ll_take_photo_access_own"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_40"
+            android:background="@color/primary_white"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_min"
+            android:layout_marginBottom="@dimen/margin_min"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/margin_25"
+                android:layout_height="@dimen/margin_25"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_select_own"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:text="从相册中选择"
+                android:textColor="@color/primary_black"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_line"
+            android:background="@color/primary_line"/>
+
+        <LinearLayout
+            android:id="@+id/ll_take_photo_access_take"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_40"
+            android:background="@color/primary_white"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/margin_20"
+            android:layout_marginBottom="@dimen/margin_min"
+            android:layout_marginTop="@dimen/margin_min"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/margin_25"
+                android:layout_height="@dimen/margin_25"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_select_take"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:text="拍照"
+                android:textColor="@color/primary_black"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

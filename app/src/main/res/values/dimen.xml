@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="toolbar_padding_top">0dp</dimen>
+
+    <dimen name="default_corner_radius">6dp</dimen>
+
+    <dimen name="bar_height">48dp</dimen>
+    <dimen name="tab_height">42dp</dimen>
+
+    <dimen name="home_note_list_item_title_margin">15sp</dimen>
+    <dimen name="home_note_list_item_real_height">140dp</dimen>
+
+    <dimen name="home_note_list_header_high">40dp</dimen>
+
+    <dimen name="home_note_list_line_margin_left">10dp</dimen>
+    <dimen name="home_note_list_line_margin_width">4dp</dimen>
+
+    <dimen name="add_note_bottom_height">45dp</dimen>
+
+    <dimen name="user_logo_radius">75dp</dimen>
+    <dimen name="left_recycle_height">60dp</dimen>
+    
+    <dimen name="margin_line">1dp</dimen>
+    <dimen name="margin_line_half">0.5dp</dimen>
+    <dimen name="margin_min">6dp</dimen>
+    <dimen name="margin_small">3dp</dimen>
+    <dimen name="margin_midddle">8dp</dimen>
+
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_7">7dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_18">18dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_22">22dp</dimen>
+    <dimen name="margin_25">25dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+    <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_45">45dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_100">200dp</dimen>
+
+    <dimen name="sp_16">16sp</dimen>
+
+
+    <!-- login -->
+    <dimen name="login_et_h">48dp</dimen>
+    <dimen name="login_btn_h">47.5dp</dimen>
+    <dimen name="login_vc_btn_width">97.5dp</dimen>
+    <dimen name="login_vc_btn_high">28dp</dimen>
+
+    <!-- 拍照 -->
+    <dimen name="camera_bottom_content_height">80dp</dimen>
+    <dimen name="option_item_height">49dp</dimen>
+    <dimen name="option_item_summery_txt_size">10sp</dimen>
+    <dimen name="personal_eamil_text_size">15sp</dimen>
+    <dimen name="popupwindow_width">105dip</dimen>
+    <dimen name="popupwindow_height">22dip</dimen>
+    <dimen name="dialog_choose_type_w">310dp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="select_image_bottom_height">50dp</dimen>
+
+    <!-- setting -->
+    <dimen name="profile_item_height">59dp</dimen>
+
+
+</resources>

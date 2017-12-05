@@ -1,0 +1,114 @@
+<resources>
+    <string name="app_name">SimpleNote</string>
+    <string name="app_slogan">记住现在</string>
+
+    <string name="cancel">取消</string>
+    <string name="close">关闭</string>
+    <string name="back">返回</string>
+
+    <string name="app_back">返回</string>
+
+    <string name="toolbar_add">add</string>
+    <string name="toolbar_search">search</string>
+
+    <string name="tab_item_name_home">记录</string>
+    <string name="tab_item_name_me">喵印</string>
+
+    <string name="note_header_date_format">%1$d年%2$d月%3$d日</string>
+    <string name="day_today">今天</string>
+
+    <!-- 添加日记 -->
+    <string name="add_note_title">记</string>
+    <string name="hint_add_note_title">输入标题</string>
+    <string name="hint_add_note_content">写点什么...</string>
+
+
+
+    <!-- 登录 -->
+    <string name="login_phone_hint">输入手机号码</string>
+    <string name="login_phone_psw_hint">请输入密码</string>
+    <string name="login_forget_psw">找回密码(仅限手机用户)</string>
+    <string name="login">登录</string>
+    <string name="signup_readed_agreement">注册或登录表示同意</string>
+    <string name="signup_agreement_title">微记用户协议</string>
+
+    <!-- 注册 -->
+    <string name="signup_phone_hint">输入手机号码</string>
+    <string name="signup_captcha">验证码</string>
+    <string name="signup_nick_name">昵称</string>
+    <string name="signup_get_captcha">获取验证码</string>
+    <string name="signup_psw_hint">密码由6-18个字符组成，区分大小写</string>
+    <string name="signup">注册</string>
+
+    <!-- 默认对话框-->
+    <string name="progress_tip">正在加载...请稍等。</string>
+    <string name="progress_tip_photo">正在打开相机...请稍等。</string>
+    <string name="dialog_title">提示</string>
+    <string name="dialog_ok">确定</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_setting">设置</string>
+    <string name="dialog_permission_lack">缺少必要的权限，会导致无法正常使用某些功能，可以到应用的设置里去添加必要的权限。</string>
+    <string name="dialog_delete_note">是否该日记</string>
+    <string name="dialog_delete_success">删除成功</string>
+
+    <!-- 拍照 -->
+    <string name="empty_string"/>
+    <string name="image_select_per">%1$d张</string>
+    <string name="image_select_count">完成</string>
+    <string name="image_select_count1">完成(%1$d/%2$d)</string>
+    <string name="over_image_count_limit">已达图片上限</string>
+    <string name="need_take_photo_permission">需要拍照权限</string>
+    <string name="picture">Picture</string>
+    <string name="description_info">Info</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+
+    <!-- 同步 -->
+    <string name="sync_up_tip_upload">将储存本地的日记上传到云端备份，避免因更换手机或手机数据损坏，导致日记丢失。</string>
+    <string name="sync_up_tip_download">获取备份在云端的日记保存到本地。使用后，本地数据将与云端数据合并。</string>
+    <string name="sync_upload_need_total_count">需要上传的日记数：%1$d</string>
+    <string name="sync_upload_need_success_count">上传成功的日记数：%1$d</string>
+    <string name="sync_upload_need_fail_count">上传失败的日记数：%1$d</string>
+    <string name="sync_upload_ing">正在上传...</string>
+    <string name="sync_upload_success">同步上传成功！</string>
+    <string name="sync_upload_fail">同步上传失败。请稍后再试或联系客服。</string>
+    <string name="sync_download_need_total_count">需要下载的日记数：%1$d</string>
+    <string name="sync_download_need_success_count">下载成功的日记数：%1$d</string>
+    <string name="sync_download_need_fail_count">下载失败的日记数：%1$d</string>
+    <string name="sync_download_ing">正在下载...</string>
+    <string name="sync_download_success">同步下载成功！</string>
+    <string name="sync_download_fail">同步下载失败。请稍后再试或联系客服。</string>
+
+    <!-- 注册 -->
+    <string name="signup_please_iput_phone">未输入手机号码，请检查</string>
+    <string name="signup_phone_format_error">输入的手机号码格式不正确，请检查</string>
+    <string name="signup_minute_count">%1$d秒后重发</string>
+    <string name="signup_please_iput_psw">未输入密码，请检查</string>
+    <string name="signup_please_iput_captcha">请输入您收到的短信验证码</string>
+    <string name="signup_please_nick_name">请输入昵称</string>
+    <string name="signuping">正在注册...请稍后</string>
+    <string name="signup_fail">注册失败，请稍后重试</string>
+    <string name="signup_success">注册成功，已经登录</string>
+    <string name="signup_send_code_success">验证码已发送，请留意信息</string>
+
+    <!-- 登录 -->
+    <string name="login_fail">登录失败，请稍后重试</string>
+    <string name="login_success">登录成功</string>
+    <string name="profile_login_now">登录</string>
+    <string name="dialog_use_tip">该功能需要登录后才能使用</string>
+
+    <!-- 头像 -->
+    <string name="avatar_type_logo">更换头像</string>
+    <string name="avatar_type_backdrop">更换背景</string>
+
+    <!-- advice -->
+    <string name="advice_title">意见反馈</string>
+    <string name="advice_btn">提交</string>
+    <string name="advice_hint_1">您的每一个建议，都是我们产品进步的方向，十分感谢您的支持^^.</string>
+    <string name="advice_hint_2">如果愿意，请留下您的联系方式，我们给予您及时的反馈。</string>
+    <string name="advice_toast">将你的建议写下来吧～</string>
+    <string name="advice_subject">微记：%1$s的反馈</string>
+
+    <!-- paster -->
+    <string name="paster_title">纸</string>
+
+</resources>

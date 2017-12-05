@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="iv_home_add" type="id"/>
+    <item name="iv_home_more" type="id"/>
+
+</resources>

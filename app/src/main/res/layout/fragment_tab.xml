@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.simplenote.widgets.TopLineLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/tab_height"
+    android:background="@color/primary_white"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:id="@+id/ll_tab_item_home"
+        style="@style/TabLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <com.simplenote.widgets.RedPointImageView
+            android:id="@+id/iv_tab_item_home"
+            style="@style/TabImageView"
+            android:paddingTop="@dimen/margin_12"
+            android:paddingBottom="@dimen/margin_12"
+            android:src="@drawable/selector_tab_write" />
+
+        <TextView
+            android:id="@+id/tv_tab_write"
+            style="@style/TabTextView"
+            android:visibility="gone"
+            android:textColor="@color/primary_color"
+            android:text="@string/tab_item_name_home"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tab_item_me"
+        style="@style/TabLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <com.simplenote.widgets.RedPointImageView
+            android:id="@+id/iv_tab_item_me"
+            style="@style/TabImageView"
+            android:paddingTop="@dimen/margin_12"
+            android:paddingBottom="@dimen/margin_12"
+            android:src="@drawable/selector_tab_miao" />
+
+        <TextView
+            android:id="@+id/tv_tab_miao"
+            style="@style/TabTextView"
+            android:visibility="gone"
+            android:text="@string/tab_item_name_me"/>
+    </LinearLayout>
+
+
+    <!--<include-->
+    <!--android:layout_weight="1"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--layout="@layout/item_tab_layout_nav" />-->
+
+    <!--
+    <include
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        layout="@layout/item_tab_layout_tools" />
+    -->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_tab_item_my"-->
+        <!--style="@style/TabLayout"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center">-->
+
+        <!--<com.gaokaozhiyuan.widgets.image.RedPointImageView-->
+            <!--android:id="@+id/iv_tab_item_my"-->
+            <!--style="@style/TabImageView"-->
+            <!--android:src="@drawable/selector_tab_me" />-->
+
+        <!--<TextView-->
+            <!--style="@style/TabTextView"-->
+            <!--android:text="@string/tab_item_name_my"-->
+            <!--android:gravity="center_horizontal"/>-->
+    <!--</LinearLayout>-->
+
+
+</com.simplenote.widgets.TopLineLinearLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/margin_20"
+        android:paddingRight="@dimen/margin_20">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_corner_gray_et"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/login_et_h">
+                    <EditText
+                        android:id="@+id/et_login_phone"
+                        style="@style/LoginEditText"
+                        android:background="@drawable/et_bg_login_leftright_top"
+                        android:paddingLeft="@dimen/margin_45"
+                        android:layout_alignParentLeft="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:hint="@string/login_phone_hint"
+                        android:imeOptions="actionDone"
+                        android:inputType="phone|number" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_phone"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_16"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-1dp">
+
+                    <EditText
+                        android:id="@+id/et_login_psw"
+                        style="@style/LoginEditText"
+                        android:background="@null"
+                        android:paddingLeft="@dimen/margin_45"
+                        android:hint="@string/login_phone_psw_hint"
+                        android:inputType="textPassword"
+                        android:password="true" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_lock"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_16"/>
+                    <ImageView
+                        android:id="@+id/iv_login_psw_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingBottom="@dimen/margin_small"
+                        android:paddingLeft="@dimen/margin_midddle"
+                        android:paddingRight="@dimen/margin_15"
+                        android:paddingTop="@dimen/margin_small"
+                        android:src="@drawable/selector_iv_signup_psw_switch" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_login_forget_psw"
+                style="@style/LoginforgetPWText"
+                android:text="@string/login_forget_psw"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/btn_login"
+                style="@style/LoginBtnActivity"
+                android:layout_marginTop="@dimen/margin_25"
+                android:layout_width="match_parent"
+                android:text="@string/login" />
+
+            <include layout="@layout/layout_user_agreement" />
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

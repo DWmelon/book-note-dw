@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@drawable/sync_download_00"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_01"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_02"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_03"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_04"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_05"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_06"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_07"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_08"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_07"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_06"
+        android:duration="100">
+    </item>
+
+
+    <item
+        android:drawable="@drawable/sync_download_05"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_04"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_03"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_02"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_02"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_01"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@drawable/sync_download_00"
+        android:duration="100">
+    </item>
+
+</animation-list>

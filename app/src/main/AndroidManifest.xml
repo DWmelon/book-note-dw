@@ -1,0 +1,165 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.simplenote">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+    <!-- SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <!-- 向SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <!-- umemg -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+    <!--<uses-permission android:name="andr
+    oid.permission.CALL_PHONE" />-->
+    <!--<uses-permission android:name="android.permission.READ_LOGS" />-->
+    <!--<uses-permission android:name="android.permission.SET_DEBUG_APP" />-->
+    <!--<uses-permission android:name="android.permission.GET_ACCOUNTS" />-->
+    <!--<uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />-->
+
+    <application
+        android:name=".application.MainApplication"
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/AppTheme">
+      <activity
+        android:name=".module.splash.SplashActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+          android:screenOrientation="portrait">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+
+        <meta-data android:name="UMENG_APPKEY" android:value="59755445b27b0a758a001976"/>
+        <meta-data android:name="UMENG_MESSAGE_SECRET" android:value="4959a82b9b25b74f1c6f5974503c134d"/>
+        <meta-data android:value="${UMENG_CHANNEL_VALUE}" android:name="UMENG_CHANNEL"/>
+
+        <activity
+            android:name=".module.MyMainActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.add.AddNoteActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".module.add.SelectEmotionActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".module.pic.OpenPicActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".module.login.LoginActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".module.login.SignActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.photo.Camera2FaceActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.imgselect.ImageSelectActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.imgselect.ImgFileListActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.imgselect.ImgsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.oos.OSSActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.oos.upload.OSSUploadActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.oos.download.OSSDownloadActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.share.ThemeActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.detail.NoteDetailActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.setting.SettingActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module.left.SelectAvatarActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DialogActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.advice.AdviceActivity"
+            android:screenOrientation="portrait"/>
+
+        <!-- umeng -->
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:launchMode="singleTask"
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.umeng.qq.tencent.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.umeng.qq.tencent.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    </application>
+
+</manifest>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="@dimen/margin_10"
+android:gravity="center_horizontal"
+android:orientation="horizontal">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:button="@drawable/selector_cb"
+    android:checked="true"
+    android:text="@string/signup_readed_agreement"
+    android:textColor="@color/select_second_lab_color"
+    android:textSize="14sp" />
+
+<TextView
+    android:id="@+id/tv_signup_agreement"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin_5"
+    android:text="@string/signup_agreement_title"
+    android:textColor="@color/primary_color"
+    android:textSize="14sp" />
+
+</LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <LinearLayout
+        android:id="@+id/ll_setting_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_line"
+            android:background="@color/primary_line_light" />
+
+        <RelativeLayout
+            android:id="@+id/rl_profile_setting"
+            style="@style/ProfileItemLayout">
+
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv_user_logo"
+                android:layout_width="@dimen/margin_30"
+                android:layout_height="@dimen/margin_30"
+                android:layout_centerVertical="true"
+                fresco:roundedCornerRadius="@dimen/margin_15"
+                />
+
+            <TextView
+                android:id="@+id/tv_user_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/sdv_user_logo"
+                android:layout_alignBottom="@+id/sdv_user_logo"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:text="哈哈"
+                android:textSize="17sp"
+                android:textColor="@color/first_title_color"/>
+
+            <TextView
+                android:id="@+id/tv_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingTop="@dimen/margin_5"
+                android:paddingBottom="@dimen/margin_5"
+                android:paddingLeft="@dimen/margin_10"
+                android:paddingRight="@dimen/margin_10"
+                android:text="退出登录"
+                android:textSize="14sp"
+                android:textColor="@color/primary_red"
+                android:background="@drawable/bg_corner_red"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_line"
+            android:background="@color/primary_line_light"/>
+    </LinearLayout>
+
+</LinearLayout>

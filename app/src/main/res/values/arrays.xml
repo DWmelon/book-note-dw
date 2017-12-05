@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="emotion">
+
+        <item>happy</item>
+        <item>depression</item>
+        <item>surprise</item>
+        <item>sad</item>
+        <item>angry</item>
+
+    </string-array>
+
+    <string-array name="weather">
+
+        <item>sunny</item>
+        <item>cloudy</item>
+        <item>heavyrain</item>
+        <item>lightrain</item>
+        <item>lightning</item>
+
+    </string-array>
+
+    <string-array name="theme">
+
+        <item>like</item>
+        <item>star</item>
+        <item>food</item>
+        <item>coffee</item>
+        <item>info</item>
+        <item>baby</item>
+        <item>game</item>
+        <item>plan</item>
+        <item>medical</item>
+        <item>clothes</item>
+        <item>shop</item>
+        <item>pet</item>
+        <item>work</item>
+        <item>exercise</item>
+        <item>cooking</item>
+        <item>fashion</item>
+        <item>room</item>
+        <item>car</item>
+
+    </string-array>
+
+</resources>
