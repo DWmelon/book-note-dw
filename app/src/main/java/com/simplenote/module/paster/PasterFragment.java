@@ -14,6 +14,7 @@ import com.simplenote.PageFragment;
 import com.simplenote.R;
 import com.simplenote.application.MyClient;
 import com.simplenote.module.MyMainActivity;
+import com.simplenote.module.login.OnLoginStateChangeListener;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ import butterknife.OnClick;
  * Created by melon on 2017/11/1.
  */
 
-public class PasterFragment extends PageFragment implements OnGetPasterListListener,OnFavorPasterListener {
+public class PasterFragment extends PageFragment implements OnGetPasterListListener,OnFavorPasterListener,OnLoginStateChangeListener {
 
     @BindView(R.id.rv_paster)
     RecyclerView mRvPaster;
@@ -48,6 +49,7 @@ public class PasterFragment extends PageFragment implements OnGetPasterListListe
         mContentView = view;
         ButterKnife.bind(this,view);
         initData();
+        MyClient.getMyClient().getLoginManager().registerOnLoginStateChangeListener(this);
         MyClient.getMyClient().getPasterManager().getPasterList(0,this);
     }
 
@@ -55,6 +57,7 @@ public class PasterFragment extends PageFragment implements OnGetPasterListListe
         mTvTitle.setText(getString(R.string.paster_title));
         mContentView.findViewById(R.id.iv_bar_left_icon).setVisibility(View.GONE);
         mAdapter = new PasterAdapter(getActivity());
+        mAdapter.setFavorListener(this);
         mRvPaster.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
 
@@ -88,7 +91,22 @@ public class PasterFragment extends PageFragment implements OnGetPasterListListe
     }
 
     @Override
-    public void onFavorFinish(boolean isSuccess) {
+    public void onFavorFinish(boolean isSuccess, PasterAdapter.ViewHolder holder) {
+        if (getActivity() == null || !isSuccess){
+            return;
+        }
+        if (!holder.mIvFavorIcon.isSelected()){
+            holder.mIvFavorIcon.setSelected(true);
+            int count = Integer.parseInt(holder.mTvFavorCount.getText().toString());
+            holder.mTvFavorCount.setText(String.valueOf(++count));
+        }
+    }
 
+    @Override
+    public void onLoginStatChange(boolean isLogin) {
+        if (getActivity() == null){
+            return;
+        }
+        MyClient.getMyClient().getPasterManager().getPasterList(this);
     }
 }

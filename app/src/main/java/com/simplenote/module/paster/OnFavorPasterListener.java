@@ -6,6 +6,6 @@ package com.simplenote.module.paster;
 
 public interface OnFavorPasterListener {
 
-    void onFavorFinish(boolean isSuccess);
+    void onFavorFinish(boolean isSuccess, PasterAdapter.ViewHolder holder);
 
 }

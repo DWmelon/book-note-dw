@@ -11,6 +11,7 @@ import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import com.simplenote.application.MyClient;
+import com.simplenote.constants.Constant;
 import com.simplenote.model.NoteModel;
 import com.simplenote.module.add.AddNoteManager;
 import com.simplenote.module.oos.callback.OnCheckIsSyncListener;
@@ -54,6 +55,7 @@ public class OSSUploadManager implements OnDeleteImageListener{
 
         HashMap<String,String> map = new HashMap<>();
         map.put("idList", V2ArrayUtil.getJsonArrData(idList));
+        map.put(Constant.PARAM.TOKEN, MyClient.getMyClient().getAccountManager().getToken());
 
         final IRequest request = (IRequest) MyClient.getMyClient().getService(MyClient.SERVICE_HTTP_REQUEST);
         request.sendRequestForPostWithJson(OSSManager.URL_UPLOAD_CHECK, map, new IRequestCallback() {
@@ -159,8 +161,8 @@ public class OSSUploadManager implements OnDeleteImageListener{
         final String id = idList.get(uploadNoteIndex);
 
         HashMap<String,String> map = new HashMap<>();
-        map.put("noteId",id);
-        map.put("token",MyClient.getMyClient().getAccountManager().getToken());
+        map.put(Constant.PARAM.NOTE_ID,id);
+        map.put(Constant.PARAM.TOKEN,MyClient.getMyClient().getAccountManager().getToken());
 
         final IRequest request = (IRequest) MyClient.getMyClient().getService(MyClient.SERVICE_HTTP_REQUEST);
         request.sendRequestForPostWithJson(OSSManager.URL_UPLOAD_GET_NOTE, map, new IRequestCallback() {
@@ -228,6 +230,7 @@ public class OSSUploadManager implements OnDeleteImageListener{
         map.put("imagePath",V2ArrayUtil.getJsonArrData(noteModel.getImageNameList()));
         map.put("userId",String.valueOf(noteModel.getUserId()));
         map.put("status",String.valueOf(noteModel.getStatus()));
+        map.put(Constant.PARAM.TOKEN,MyClient.getMyClient().getAccountManager().getToken());
 
         final IRequest request = (IRequest) MyClient.getMyClient().getService(MyClient.SERVICE_HTTP_REQUEST);
         request.sendRequestForPostWithJson(OSSManager.URL_UPLOAD_ADD_NOTE, map, new IRequestCallback() {

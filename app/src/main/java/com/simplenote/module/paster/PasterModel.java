@@ -15,7 +15,7 @@ public class PasterModel {
     private final String KEY_PASTER_URL = "pasterUrl";
     private final String KEY_PASTER_REMARK = "pasterRemark";
     private final String KEY_PASTER_FAVOR = "pasterFavor";
-    private final String KEY_IS_FAVOR = "isFavor";
+    private final String KEY_IS_FAVOR = "hasFavor";
 
 
     private Long pasterId;

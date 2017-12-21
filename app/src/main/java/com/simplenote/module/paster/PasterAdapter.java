@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.simplenote.R;
@@ -31,6 +32,12 @@ public class PasterAdapter extends RecyclerView.Adapter<PasterAdapter.ViewHolder
 
     public PasterAdapter(Context context){
         this.mContext = context;
+    }
+
+    private OnFavorPasterListener favorListener;
+
+    public void setFavorListener(OnFavorPasterListener listener){
+        favorListener = listener;
     }
 
     @Override
@@ -55,11 +62,12 @@ public class PasterAdapter extends RecyclerView.Adapter<PasterAdapter.ViewHolder
         holder.mIvFavorIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!MyClient.getMyClient().getLoginManager().isLogin()){
+                    Toast.makeText(mContext,R.string.paster_login_tip,Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (!holder.mIvFavorIcon.isSelected()){
-                    MyClient.getMyClient().getPasterManager().favorPaster(pasterModel.getPasterId(),null);
-                    holder.mIvFavorIcon.setSelected(true);
-                    int count = Integer.parseInt(holder.mTvFavorCount.getText().toString());
-                    holder.mTvFavorCount.setText(String.valueOf(++count));
+                    MyClient.getMyClient().getPasterManager().favorPaster(pasterModel.getPasterId(),holder,favorListener);
                 }
             }
         });

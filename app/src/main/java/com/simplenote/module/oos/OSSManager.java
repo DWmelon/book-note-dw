@@ -122,7 +122,7 @@ public class OSSManager {
         }
 
         HashMap<String,String> map = new HashMap<String, String>();
-        map.put("userId",String.valueOf(MyClient.getMyClient().getAccountManager().getUserId()));
+        map.put(Constant.PARAM.TOKEN,MyClient.getMyClient().getAccountManager().getToken());
         map.put("operate",type);
         final IRequest request = (IRequest) MyClient.getMyClient().getService(MyClient.SERVICE_HTTP_REQUEST);
         request.sendRequestForPostWithJson(URL_UPLOAD_CONFIG, map, new IRequestCallback() {
