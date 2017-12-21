@@ -78,6 +78,11 @@ public class AddNoteBaseActivity extends BaseActivity implements InputSoftKeyUti
 
     private void initBundle(){
         Bundle bundle = getIntent().getExtras();
+        if (bundle == null){
+            TYPE_ADD_NOTE = Constant.VALUE.TYPE_NOTE_DETAIL_ADD;
+            return;
+        }
+
         TYPE_ADD_NOTE = bundle.getInt(Constant.KEY.PAGE_TYPE,Constant.VALUE.TYPE_NOTE_DETAIL_ADD);
 
         if (TYPE_ADD_NOTE == Constant.VALUE.TYPE_NOTE_DETAIL_MODIFY){

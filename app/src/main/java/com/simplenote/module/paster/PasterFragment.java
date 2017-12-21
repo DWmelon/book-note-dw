@@ -53,7 +53,7 @@ public class PasterFragment extends PageFragment implements OnGetPasterListListe
 
     private void initData(){
         mTvTitle.setText(getString(R.string.paster_title));
-
+        mContentView.findViewById(R.id.iv_bar_left_icon).setVisibility(View.GONE);
         mAdapter = new PasterAdapter(getActivity());
         mRvPaster.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 

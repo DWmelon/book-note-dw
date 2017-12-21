@@ -71,6 +71,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.7.0'
     compile 'com.umeng.analytics:analytics:latest.integration'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+
 }
 
 // Run this once to be able to run the application with BUCK

@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:textSize="18sp"
-                    android:textColor="@color/first_title_color"/>
+                    android:textColor="@color/primary_color"/>
 
                 <LinearLayout
                     android:id="@+id/ll_bar_right_content"

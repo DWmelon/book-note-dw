@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="@dimen/home_note_list_header_high"
-    android:background="@android:color/transparent">
+    android:background="@color/primary_white">
 
     <View
         android:layout_width="@dimen/home_note_list_line_margin_width"
@@ -13,7 +13,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/margin_25">
+        android:paddingLeft="11dp"
+        android:layout_marginLeft="14dp">
 
         <TextView
             android:id="@+id/tv_home_list_title"

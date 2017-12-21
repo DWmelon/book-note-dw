@@ -48,6 +48,9 @@ public class MyMainFragment extends PageFragment implements OnDataLoadFinishList
     @BindView(R.id.iv_home_more_search)
     View mIvSearch;
 
+    @BindView(R.id.iv_bar_left_icon)
+    ImageView mIvLeftMenu;
+
     private AnimationSet translateAnimInA;
     private AnimationSet translateAnimInB;
     private AnimationSet translateAnimOutA;
@@ -73,6 +76,7 @@ public class MyMainFragment extends PageFragment implements OnDataLoadFinishList
     }
     
     private void initBar(View view){
+        mIvLeftMenu.setImageResource(R.drawable.icon_home_more);
 
         LinearLayout mLlContent = (LinearLayout) view.findViewById(R.id.ll_bar_right_content);
 

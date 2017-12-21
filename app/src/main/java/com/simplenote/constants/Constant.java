@@ -6,8 +6,8 @@ package com.simplenote.constants;
 
 public class Constant {
 
-    public static final String URL_MAIN = "http://192.168.2.84:12345";
-//    public static final String URL_MAIN = "http://119.23.222.106/simplenote";
+//    public static final String URL_MAIN = "http://192.168.2.84:12345";
+    public static final String URL_MAIN = "http://119.23.222.106/simplenote";
 
     public static class NUMBER{
 
