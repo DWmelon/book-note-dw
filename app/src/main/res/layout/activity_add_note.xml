@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rl_add_note_rootview"
+    android:background="@color/primary_white"
     android:fillViewport="true">
 
         <include layout="@layout/layout_toolbar"

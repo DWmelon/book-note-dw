@@ -1,9 +1,13 @@
 package com.simplenote.module.left;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +23,7 @@ import com.simplenote.module.permission.OnRequestPermissionFinish;
 import com.simplenote.util.FileUtil;
 
 import java.io.File;
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +40,7 @@ public class SelectAvatarActivity extends BaseActivity implements OnRequestPermi
 
     private String pageType;
 
-    private Uri imageUri;
+    private String imagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,12 +100,26 @@ public class SelectAvatarActivity extends BaseActivity implements OnRequestPermi
         MyClient.getMyClient().getPermissionManager().onRequestPermissionsResult(requestCode,permissions,grantResults,this);
     }
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.REQUEST.INTENT_SELECT_PIC){
             if (resultCode == RESULT_OK){
-                imageUri = data.getData();
+                //获得图片的uri
+                Uri originalUri = data.getData();
+                //获取图片的路径：
+                String[] proj = {MediaStore.Images.Media.DATA};
+                //好像是android多媒体数据库的封装接口，具体的看Android文档
+                Cursor cursor = managedQuery(originalUri, proj, null, null, null);
+                //按我个人理解 这个是获得用户选择的图片的索引值
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                //将光标移至开头 ，这个很重要，不小心很容易引起越界
+                cursor.moveToFirst();
+                //最后根据索引值获取图片路径
+                imagePath = cursor.getString(column_index);
+
                 saveImage();
             }else{
 
@@ -109,25 +128,31 @@ public class SelectAvatarActivity extends BaseActivity implements OnRequestPermi
     }
 
     @Override
-    public void onUploadImageFinish(boolean isSuccess, int index) {
-        if (isSuccess){
-            String path = MyClient.getMyClient().getStorageManager().getImageLogoPath(pageType);
-            FileUtil.copyFile(new File(imageUri.getPath()), path);
-            Intent intent = new Intent();
-            intent.putExtra(Constant.BUNDEL.PIC_RES,imageUri.getPath());
-            intent.putExtra(Constant.BUNDEL.AVATAR_TYPE,pageType);
-            setResult(RESULT_OK,intent);
-        }else{
-            Toast.makeText(this,"保存图片失败",Toast.LENGTH_SHORT).show();
-        }
-        finish();
+    public void onUploadImageFinish(final boolean isSuccess, int index) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (isSuccess){
+                    String path = MyClient.getMyClient().getStorageManager().getImageLogoPath(pageType);
+                    FileUtil.copyFile(new File(imagePath), path);
+                    Intent intent = new Intent();
+                    intent.putExtra(Constant.BUNDEL.PIC_RES,imagePath);
+                    intent.putExtra(Constant.BUNDEL.AVATAR_TYPE,pageType);
+                    setResult(RESULT_OK,intent);
+                }else{
+                    Toast.makeText(SelectAvatarActivity.this,"保存图片失败",Toast.LENGTH_SHORT).show();
+                }
+                finish();
+            }
+        });
+
     }
 
     @Override
     public void onGetConfigFinish(boolean isSuccess) {
         if (isSuccess){
             String targetPath = "image/"+MyClient.getMyClient().getAccountManager().getUserId() + "/"+ pageType + AddNoteManager.SUPPORT_TYPE;
-            MyClient.getMyClient().getOSSManager().uploadImageToOSS(targetPath,imageUri.getPath(),this);
+            MyClient.getMyClient().getOSSManager().uploadImageToOSS(targetPath,imagePath,this);
         }else{
             Toast.makeText(this,"保存图片失败",Toast.LENGTH_SHORT).show();
             finish();
