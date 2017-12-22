@@ -155,21 +155,13 @@ public class AddNoteActivity extends AddNoteBaseActivity{
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_right:
-                if (TYPE_ADD_NOTE == Constant.VALUE.TYPE_NOTE_DETAIL_ADD){
-                    addNote();
-                }else{
-                    modifyNote();
-                }
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+    protected void handleFinishNote(){
+        if (TYPE_ADD_NOTE == Constant.VALUE.TYPE_NOTE_DETAIL_ADD){
+            addNote();
+        }else{
+            modifyNote();
         }
     }
-
 
     private void updateInfoIcons(){
         mLlInfoIcons.removeAllViews();

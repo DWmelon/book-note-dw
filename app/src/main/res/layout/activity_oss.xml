@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/primary_white">
 
     <include layout="@layout/layout_toolbar"/>
 
@@ -40,7 +41,7 @@
         <TextView
             android:id="@+id/tv_sync_choose_upload"
             android:layout_width="80dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:background="@drawable/bg_corner_primary"
             android:text="使用"
             android:textSize="15sp"
@@ -84,7 +85,7 @@
         <TextView
             android:id="@+id/tv_sync_choose_download"
             android:layout_width="80dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:background="@drawable/bg_corner_primary"
             android:text="使用"
             android:textSize="15sp"

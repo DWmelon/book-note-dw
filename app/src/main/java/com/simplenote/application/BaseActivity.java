@@ -35,11 +35,13 @@ public class BaseActivity extends AppCompatActivity {
 
     protected MaterialDialog mMaterialDialog;
 
+    boolean isInitBar = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PushAgent.getInstance(this).onAppStart();
-        BarTextColorUtils.StatusBarLightMode(this);
+
 
     }
 
@@ -47,6 +49,15 @@ public class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+        if (!isInitBar){
+            isInitBar = true;
+            if (BarTextColorUtils.StatusBarLightMode(this) == 4){
+                View view = findViewById(R.id.v_tool_bar_top);
+                if (view != null){
+                    view.setBackgroundColor(getResources().getColor(R.color.primary_black));
+                }
+            }
+        }
     }
 
     @Override

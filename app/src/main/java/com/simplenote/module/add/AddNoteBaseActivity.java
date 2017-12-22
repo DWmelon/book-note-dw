@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import com.simplenote.R;
 import com.simplenote.application.BaseActivity;
 import com.simplenote.application.MyClient;
 import com.simplenote.model.NoteModel;
+import com.simplenote.module.detail.NoteDetailActivity;
 import com.simplenote.module.permission.OnRequestPermissionFinish;
 import com.simplenote.module.permission.PermissionManager;
 import com.simplenote.module.photo.Camera2FaceActivity;
@@ -30,6 +32,7 @@ import com.simplenote.module.photo.ChooseTypeDialog;
 import com.simplenote.util.CommonUtil;
 import com.simplenote.util.InputSoftKeyUtils;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -37,25 +40,35 @@ import butterknife.OnClick;
  * Created by melon on 2017/7/18.
  */
 
-public class AddNoteBaseActivity extends BaseActivity implements InputSoftKeyUtils.OnGetSoftHeightListener,InputSoftKeyUtils.OnSoftKeyWordShowListener,OnRequestPermissionFinish {
+public abstract class AddNoteBaseActivity extends BaseActivity implements InputSoftKeyUtils.OnGetSoftHeightListener,InputSoftKeyUtils.OnSoftKeyWordShowListener,OnRequestPermissionFinish {
 
     public static final int TYPE_FOCUS_TITLE = 0;
     public static final int TYPE_FOCUS_CONTENT = 1;
     public int focusType = TYPE_FOCUS_TITLE;
 
-    private View mRlContent;
+    @BindView(R.id.rl_add_note_rootview)
+    View mRlContent;
 
-    private ScrollView mSvContent;
+    @BindView(R.id.sv_add_note)
+    ScrollView mSvContent;
     private int editHeightOrigin;
     private int editHeightAfter;
 
-    protected EditText mEtTitle;
-    protected EditText mEtContent;
+    @BindView(R.id.et_add_note_title)
+    EditText mEtTitle;
 
-    protected RecyclerView mRvPic;
+    @BindView(R.id.et_add_note_content)
+    EditText mEtContent;
+
+    @BindView(R.id.rv_add_note_pic)
+    RecyclerView mRvPic;
     protected AddNotePicAdapter adapterPic;
 
-    private TextView mTvTitle;
+    @BindView(R.id.tv_tool_bar_title)
+    TextView mTvTitle;
+
+    @BindView(R.id.ll_bar_right_content)
+    LinearLayout mLlRightBar;
 
     private boolean isShow = false;
 
@@ -70,7 +83,7 @@ public class AddNoteBaseActivity extends BaseActivity implements InputSoftKeyUti
         setContentView(R.layout.activity_add_note);
         ButterKnife.bind(this);
         initBundle();
-        initView();
+        initRightBar();
         initData();
         initListener();
 
@@ -99,17 +112,19 @@ public class AddNoteBaseActivity extends BaseActivity implements InputSoftKeyUti
 
     }
 
-    private void initView(){
-        mTvTitle = (TextView) findViewById(R.id.tv_tool_bar_title);
+    private void initRightBar(){
 
-        mRvPic = (RecyclerView)findViewById(R.id.rv_add_note_pic);
-
-        mRlContent =  findViewById(R.id.rl_add_note_rootview);
-        mSvContent = (ScrollView)findViewById(R.id.sv_add_note);
-
-        mEtTitle = (EditText)findViewById(R.id.et_add_note_title);
-        mEtContent = (EditText)findViewById(R.id.et_add_note_content);
-
+        ImageView iv = new ImageView(this);
+        iv.setImageResource(R.drawable.icon_tab_write_press);
+        int padding = getResources().getDimensionPixelOffset(R.dimen.margin_10);
+        iv.setPadding(padding,padding,padding,padding);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handleFinishNote();
+            }
+        });
+        mLlRightBar.addView(iv);
 
     }
 
@@ -122,17 +137,12 @@ public class AddNoteBaseActivity extends BaseActivity implements InputSoftKeyUti
         mRvPic.setLayoutManager(staggered);
     }
 
+    protected abstract void handleFinishNote();
+
     @OnClick(R.id.iv_bar_left_icon)
     void back(){
         finish();
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add_note, menu);
-        return true;
-    }
-
 
     private void adjustIconLayout(final boolean isShow){
         if (editHeightOrigin == 0 || this.isShow == isShow){

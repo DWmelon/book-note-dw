@@ -18,6 +18,7 @@
     <color name="first_title_color_light">#5D5F5F</color>
 
     <color name="transparent_white_30">#48ffffff</color>
+    <color name="transparent_red_30">#48E45E46</color>
 
     <color name="transparent_white_50">#80ffffff</color>
 
@@ -40,6 +41,7 @@
     <color name="primary_blue_light">#84C4FF</color>
     <color name="primary_green_light">#6DD09D</color>
     <color name="primary_yellow">#FADC74</color>
+    <color name="primary_gray">#E0E0E0</color>
 
     <!-- home -->
     <color name="home_pen_gray">#bfbfbf</color>

@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.simplenote.R;
 import com.simplenote.application.BaseActivity;
 import com.simplenote.application.MyClient;
+import com.simplenote.constants.Constant;
 import com.simplenote.model.NoteModel;
 import com.simplenote.module.oos.callback.OnCheckIsSyncListener;
 import com.simplenote.module.oos.callback.OnGetUploadConfigListener;
@@ -30,12 +31,15 @@ import butterknife.OnClick;
 public class OSSUploadActivity extends BaseActivity implements OnGetUploadConfigListener,OnCheckIsSyncListener,OnUploadNoteListener,OnUploadFinishListener
 {
 
-    @BindView(R.id.iv_sync_up)
-    ImageView mIvSyncUp;
-
-    private AnimationDrawable animationDrawable;
+//    @BindView(R.id.iv_sync_up)
+//    ImageView mIvSyncUp;
+//
+//    private AnimationDrawable animationDrawable;
 
     private List<String> needUploadList = new ArrayList<>();
+
+    @BindView(R.id.tv_tool_bar_title)
+    TextView mTvTitle;
 
     @BindView(R.id.tv_sync_upload_total)
     TextView mTvTotalCount;
@@ -51,17 +55,24 @@ public class OSSUploadActivity extends BaseActivity implements OnGetUploadConfig
     @BindView(R.id.tv_sync_upload_progress)
     TextView mTvSyncSituaTip;
 
+    @BindView(R.id.tv_sync_upload_start)
+    TextView mTvUploadStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
         ButterKnife.bind(this);
+        mTvTitle.setText(R.string.sync_upload_title);
 
+//        mIvSyncUp.setImageResource(R.drawable.sync_up);
+//        animationDrawable = (AnimationDrawable) mIvSyncUp.getDrawable();
 
-        mIvSyncUp.setImageResource(R.drawable.sync_up);
-        animationDrawable = (AnimationDrawable) mIvSyncUp.getDrawable();
+    }
 
+    @OnClick(R.id.iv_bar_left_icon)
+    void back(){
+        finish();
     }
 
     private int TYPE_ING = 0;
@@ -87,7 +98,8 @@ public class OSSUploadActivity extends BaseActivity implements OnGetUploadConfig
     void checkNotYetList(){
 //        String notePath = MyClient.getMyClient().getStorageManager().getNotePath();
 //        List<String> name = FileUtil.listFileNames(notePath);
-
+        mTvUploadStart.setSelected(false);
+        mTvUploadStart.setClickable(false);
         // TODO: 2017/8/7 得把note信息存在数据库
         //获取所有日记
         List<NoteModel> noteModelList = MyClient.getMyClient().getNoteV1Manager().getNoteModels();
@@ -137,6 +149,9 @@ public class OSSUploadActivity extends BaseActivity implements OnGetUploadConfig
             return;
         }
 
+        mTvUploadStart.setSelected(true);
+        mTvUploadStart.setClickable(true);
+        mTvTotalCount.setVisibility(View.VISIBLE);
         mTvTotalCount.setText(getString(R.string.sync_upload_need_total_count,needUploadList.size()));
 
         this.needUploadList = needUploadList;
@@ -151,6 +166,8 @@ public class OSSUploadActivity extends BaseActivity implements OnGetUploadConfig
      */
     @OnClick(R.id.tv_sync_upload_start)
     void handleSync(){
+        mTvUploadStart.setSelected(false);
+        mTvUploadStart.setClickable(false);
         handleTip(TYPE_ING);
         MyClient.getMyClient().getOSSManager().getUploadConfig("upload",this);
     }
@@ -178,9 +195,11 @@ public class OSSUploadActivity extends BaseActivity implements OnGetUploadConfig
 
         if (isSuccess){
             successCount++;
+            mTvSuccessCount.setVisibility(View.VISIBLE);
             mTvSuccessCount.setText(getString(R.string.sync_upload_need_success_count,successCount));
         }else{
             failCount++;
+            mTvFailCount.setVisibility(View.VISIBLE);
             mTvFailCount.setText(getString(R.string.sync_upload_need_fail_count,failCount));
         }
 
@@ -206,6 +225,6 @@ public class OSSUploadActivity extends BaseActivity implements OnGetUploadConfig
 
         //删除多余图片
         MyClient.getMyClient().getOssUploadManager().deleteExtraImage();
-
+        MyClient.getMyClient().getOSSManager().handleSyncTime(Constant.VALUE.TYPE_SYNC_TIME_UPDATE,null);
     }
 }

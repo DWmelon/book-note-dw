@@ -11,6 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.simplenote.R;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -32,10 +34,10 @@ public class BarTextColorUtils {
                 activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                 result=3;
             }
-//            else {//如果以上都不符合就只能加个半透明的背景色了
-//                result=4;
+            else {//如果以上都不符合就只能加个半透明的背景色了
+                result=4;
 //                setTranslucentForCoordinatorLayout(activity, 0xaf);
-//            }
+            }
         }
         return result;
     }
@@ -44,7 +46,7 @@ public class BarTextColorUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return;
         }
-        transparentStatusBar(activity);//先将状态栏设置为完全透明
+//        transparentStatusBar(activity);//先将状态栏设置为完全透明
         addTranslucentView(activity, statusBarAlpha);//添加一个自定义透明度的矩形状态栏
     }
     /**
@@ -69,11 +71,11 @@ public class BarTextColorUtils {
      */
     private static void addTranslucentView(Activity activity, int statusBarAlpha) {
         ViewGroup contentView = (ViewGroup) activity.findViewById(android.R.id.content);
-        if (contentView.getChildCount() > 1) {
-            contentView.getChildAt(1).setBackgroundColor(Color.argb(statusBarAlpha, 0, 0, 0));
-        } else {
-            contentView.addView(createTranslucentStatusBarView(activity, statusBarAlpha));
-        }
+//        if (contentView.getChildCount() > 1) {
+//            contentView.getChildAt(1).setBackgroundColor(Color.argb(statusBarAlpha, 0, 0, 0));
+//        } else {
+            contentView.addView(createTranslucentStatusBarView(activity, statusBarAlpha),0);
+//        }
     }
 
     /**
@@ -88,7 +90,7 @@ public class BarTextColorUtils {
         LinearLayout.LayoutParams params =
                 new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight(activity));
         statusBarView.setLayoutParams(params);
-        statusBarView.setBackgroundColor(Color.argb(alpha, 0, 0, 0));
+        statusBarView.setBackgroundColor(activity.getResources().getColor(R.color.primary_black));
         return statusBarView;
     }
     /**

@@ -1,84 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/primary_white">
 
     <include layout="@layout/layout_toolbar"/>
 
-    <TextView
-        android:id="@+id/tv_sync_upload_check"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_20"
-        android:text="检查数据"
-        android:textColor="@color/primary_white"
-        android:textSize="18sp"
-        android:background="@drawable/bg_corner_primary"/>
-
-    <TextView
-        android:id="@+id/tv_sync_upload_start"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_20"
-        android:text="开始上传"
-        android:textColor="@color/primary_white"
-        android:textSize="18sp"
-        android:background="@drawable/bg_corner_primary"/>
-
-    <ImageView
-        android:id="@+id/iv_sync_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/margin_15"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="@dimen/margin_20"
+        android:paddingLeft="@dimen/margin_10"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/margin_5"
+                android:layout_height="@dimen/margin_5"
+                android:src="@drawable/oval_red"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:text="Step 1:检查需要上传的日记"
+                android:textColor="@color/first_title_color"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_sync_upload_check"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:text="检查数据"
+            android:textColor="@color/primary_white"
+            android:textSize="14sp"
+            android:background="@drawable/bg_corner_primary"/>
 
         <TextView
             android:id="@+id/tv_sync_upload_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:visibility="invisible"
             android:text="@string/sync_upload_need_total_count"
-            android:textColor="@color/primary_black"
-            android:textSize="18sp"/>
+            android:textColor="@color/first_title_color"
+            android:textSize="14sp"/>
 
-        <TextView
-            android:id="@+id/tv_sync_upload_success"
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_line_half"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:background="@color/primary_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="@dimen/margin_20"
+        android:paddingLeft="@dimen/margin_10"
+        android:orientation="vertical">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_5"
-            android:text="@string/sync_upload_need_success_count"
-            android:textColor="@color/primary_black"
-            android:textSize="18sp"/>
+            android:layout_marginLeft="@dimen/margin_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/margin_5"
+                android:layout_height="@dimen/margin_5"
+                android:src="@drawable/oval_red"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:text="Step 2:开始上传日记"
+                android:textColor="@color/first_title_color"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_sync_upload_fail"
+            android:id="@+id/tv_sync_upload_start"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_10"
+            android:clickable="false"
+            android:text="开始上传"
+            android:textColor="@color/primary_white"
+            android:textSize="14sp"
+            android:background="@drawable/selector_oss_btn"/>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_20"
             android:layout_marginTop="@dimen/margin_5"
-            android:text="@string/sync_upload_need_fail_count"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_sync_upload_success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:text="@string/sync_upload_need_success_count"
+                android:textColor="@color/first_title_color"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_sync_upload_fail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="@string/sync_upload_need_fail_count"
+                android:textColor="@color/first_title_color"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_line_half"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:background="@color/primary_gray"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_40"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_5"
+            android:text="当前状态："
             android:textColor="@color/primary_black"
-            android:textSize="18sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/tv_sync_upload_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_5"
-            android:visibility="gone"
-            android:text="@string/sync_upload_ing"
+            android:text="@string/sync_upload_wait"
             android:textColor="@color/primary_black"
-            android:textSize="18sp"/>
+            android:textSize="14sp"/>
 
     </LinearLayout>
+
 
 </LinearLayout>

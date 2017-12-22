@@ -36,6 +36,11 @@ public class OSSActivity extends BaseActivity{
         mTvTitle.setText("云");
     }
 
+    @OnClick(R.id.iv_bar_left_icon)
+    void back(){
+        finish();
+    }
+
     @OnClick(R.id.tv_sync_choose_upload)
     void handleIntentUpload(){
         Intent intent = new Intent(this,OSSUploadActivity.class);

@@ -65,18 +65,22 @@
     <!-- 同步 -->
     <string name="sync_up_tip_upload">将储存本地的日记上传到云端备份，避免因更换手机或手机数据损坏，导致日记丢失。</string>
     <string name="sync_up_tip_download">获取备份在云端的日记保存到本地。使用后，本地数据将与云端数据合并。</string>
+    <string name="sync_upload_title">上传到云端</string>
     <string name="sync_upload_need_total_count">需要上传的日记数：%1$d</string>
     <string name="sync_upload_need_success_count">上传成功的日记数：%1$d</string>
     <string name="sync_upload_need_fail_count">上传失败的日记数：%1$d</string>
+    <string name="sync_upload_wait">等待上传</string>
     <string name="sync_upload_ing">正在上传...</string>
     <string name="sync_upload_success">同步上传成功！</string>
     <string name="sync_upload_fail">同步上传失败。请稍后再试或联系客服。</string>
+    <string name="sync_download_title">下载到本地</string>
     <string name="sync_download_need_total_count">需要下载的日记数：%1$d</string>
     <string name="sync_download_need_success_count">下载成功的日记数：%1$d</string>
     <string name="sync_download_need_fail_count">下载失败的日记数：%1$d</string>
     <string name="sync_download_ing">正在下载...</string>
     <string name="sync_download_success">同步下载成功！</string>
     <string name="sync_download_fail">同步下载失败。请稍后再试或联系客服。</string>
+    <string name="sync_time">上次同步云：%1$s</string>
 
     <!-- 注册 -->
     <string name="signup_please_iput_phone">未输入手机号码，请检查</string>
@@ -101,7 +105,7 @@
     <string name="avatar_type_backdrop">更换背景</string>
 
     <!-- advice -->
-    <string name="advice_title">意见反馈</string>
+    <string name="advice_title">槽</string>
     <string name="advice_btn">提交</string>
     <string name="advice_hint_1">您的每一个建议，都是我们产品进步的方向，十分感谢您的支持^^.</string>
     <string name="advice_hint_2">如果愿意，请留下您的联系方式，我们给予您及时的反馈。</string>

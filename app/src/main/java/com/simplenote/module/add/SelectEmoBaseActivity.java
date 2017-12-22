@@ -9,47 +9,66 @@ import android.widget.LinearLayout;
 
 import com.simplenote.R;
 import com.simplenote.application.BaseActivity;
+import com.simplenote.application.MyClient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by melon on 2017/7/18.
  */
 
-public class SelectEmoBaseActivity extends BaseActivity implements View.OnClickListener {
+public abstract class SelectEmoBaseActivity extends BaseActivity implements View.OnClickListener {
 
     private final int LINE_LENGTH = 5;
 
-    private LinearLayout mLlFirstContent;
+    @BindView(R.id.ll_select_emotion_first)
+    LinearLayout mLlFirstContent;
     protected List<ImageView> mIvFirstList = new ArrayList<>();
     protected int indexFirst = -1;
 
-    private LinearLayout mLlSecondContent;
+    @BindView(R.id.ll_select_emotion_second)
+    LinearLayout mLlSecondContent;
     protected List<ImageView> mIvSecondList = new ArrayList<>();
     protected int indexSecond = -1;
 
-    private LinearLayout mLlThirdContent;
+    @BindView(R.id.ll_select_emotion_third)
+    LinearLayout mLlThirdContent;
     protected List<ImageView> mIvThirdList = new ArrayList<>();
     protected int indexThird = -1;
+
+    @BindView(R.id.ll_bar_right_content)
+    LinearLayout mLlRightContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_emotion);
-
-        initView();
+        ButterKnife.bind(this);
+        initRightBar();
         initFirstData();
         initSecondData();
         initThirdData();
     }
 
-    private void initView(){
-
-        mLlFirstContent = (LinearLayout)findViewById(R.id.ll_select_emotion_first);
-        mLlSecondContent = (LinearLayout)findViewById(R.id.ll_select_emotion_second);
-        mLlThirdContent = (LinearLayout)findViewById(R.id.ll_select_emotion_third);
+    private void initRightBar(){
+        ImageView iv = new ImageView(this);
+        iv.setImageResource(R.drawable.icon_arrow_right_red);
+        int padding = getResources().getDimensionPixelOffset(R.dimen.margin_10);
+        iv.setPadding(padding,padding,padding,padding);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handleSelectInfo();
+            }
+        });
+        mLlRightContent.addView(iv);
     }
+
+    abstract void handleSelectInfo();
 
     private void initFirstData(){
         View view;

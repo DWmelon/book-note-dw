@@ -24,6 +24,8 @@ import com.simplenote.constants.Constant;
 import com.simplenote.application.GlobalPreferenceManager;
 import com.simplenote.application.MyClient;
 import com.simplenote.module.add.*;
+import com.simplenote.module.home.OnSyncTimeListener;
+import com.simplenote.module.home.SyncTimeModel;
 import com.simplenote.module.oos.callback.OnDeleteImageListener;
 import com.simplenote.module.oos.callback.OnDownloadImageListener;
 import com.simplenote.module.oos.callback.OnGetUploadConfigListener;
@@ -55,7 +57,7 @@ public class OSSManager {
 
 
 
-    public static final String URL_UPLOAD_CONFIG = Constant.URL_MAIN + "/data/oss/config";
+    public static final String URL_UPLOAD_CONFIG = Constant.URL_MAIN + "/sync/config";
 
     public static final String URL_UPLOAD_CHECK = Constant.URL_MAIN+"/note/upload/check";
     public static final String URL_UPLOAD_ADD_NOTE = Constant.URL_MAIN+"/note/add";
@@ -63,7 +65,12 @@ public class OSSManager {
     public static final String URL_UPLOAD_GET_NOTE = Constant.URL_MAIN+"/note/get";
     public static final String URL_DOWNLOAD_CHECK = Constant.URL_MAIN+"/note/download/check";
 
+    public static final String URL_SYNC_TIME_GET = Constant.URL_MAIN+"/sync/time/get";
+    public static final String URL_SYNC_TIME_UPDATE = Constant.URL_MAIN+"/sync/time/update";
+
     private OnGetUploadConfigListener listener;
+
+    private OnSyncTimeListener onSyncTimeListener;
 
     public static final String ACTION_MODIFY = "note_modify";
     public static final String ACTION_REMOVE = "note_remove";
@@ -307,6 +314,55 @@ public class OSSManager {
         });
         deleteTask.waitUntilFinished(); // 如果需要等待任务完成
     }
+
+    public void handleSyncTime(int type,final OnSyncTimeListener listener){
+        if (listener != null){
+            onSyncTimeListener = listener;
+        }
+
+        String url;
+        if (type == Constant.VALUE.TYPE_SYNC_TIME_GET){
+            url = URL_SYNC_TIME_GET;
+        }else{
+            url = URL_SYNC_TIME_UPDATE;
+        }
+        HashMap<String,String> map = new HashMap<>();
+        map.put(Constant.PARAM.TOKEN,MyClient.getMyClient().getAccountManager().getToken());
+        final IRequest request = (IRequest) MyClient.getMyClient().getService(MyClient.SERVICE_HTTP_REQUEST);
+        request.sendRequestForPostWithJson(url, map, new IRequestCallback() {
+            @Override
+            public void onResponseSuccess(JSONObject jsonObject) {
+                if (onSyncTimeListener == null) {
+                    return;
+                }
+
+                if (jsonObject == null) {
+                    onSyncTimeListener.onSyncTimeFinish(false,-1);
+                    return;
+                }
+
+                SyncTimeModel model = new SyncTimeModel();
+                model.decode(jsonObject);
+
+                onSyncTimeListener.onSyncTimeFinish(model.getCode() == 0,model.getSyncTime());
+
+            }
+
+            @Override
+            public void onResponseSuccess(String str) {
+
+            }
+
+            @Override
+            public void onResponseError(int code) {
+                if (onSyncTimeListener != null) {
+                    onSyncTimeListener.onSyncTimeFinish(false,-1);
+                }
+            }
+        });
+    }
+
+
 
     public OSS getOss() {
         return oss;

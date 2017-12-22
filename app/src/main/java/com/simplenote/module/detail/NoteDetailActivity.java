@@ -42,6 +42,9 @@ public class NoteDetailActivity extends BaseActivity {
     @BindView(R.id.tv_add_note_title)
     TextView mTvTitle;
 
+    @BindView(R.id.ll_bar_right_content)
+    LinearLayout mLlRightBar;
+
     @BindView(R.id.tv_add_note_time_left)
     TextView mTvDateL;
 
@@ -78,14 +81,25 @@ public class NoteDetailActivity extends BaseActivity {
     }
 
     private void initView(){
-        ((ImageView)findViewById(R.id.iv_bar_left_icon)).setImageResource(R.drawable.icon_back);
-        findViewById(R.id.iv_bar_left_icon).setOnClickListener(new View.OnClickListener() {
+        mTvTitle.setText("顾");
+
+        ImageView iv = new ImageView(this);
+        iv.setImageResource(R.drawable.icon_tab_write_press);
+        int padding = getResources().getDimensionPixelOffset(R.dimen.margin_10);
+        iv.setPadding(padding,padding,padding,padding);
+        iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(NoteDetailActivity.this, AddNoteActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt(Constant.KEY.PAGE_TYPE,Constant.VALUE.TYPE_NOTE_DETAIL_MODIFY);
+                bundle.putSerializable(Constant.KEY.NOTE_MODEL,noteModel);
+                intent.putExtras(bundle);
+                startActivityForResult(intent,Constant.REQUEST.INTENT_NOTE_DETAIL_MODIFY);
             }
         });
-        ((TextView)findViewById(R.id.tv_tool_bar_title)).setText("顾");
+        mLlRightBar.addView(iv);
+
     }
     
     private void initDate(){
@@ -167,26 +181,9 @@ public class NoteDetailActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_note_detail, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_modify:
-                Intent intent = new Intent(this, AddNoteActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt(Constant.KEY.PAGE_TYPE,Constant.VALUE.TYPE_NOTE_DETAIL_MODIFY);
-                bundle.putSerializable(Constant.KEY.NOTE_MODEL,noteModel);
-                intent.putExtras(bundle);
-                startActivityForResult(intent,Constant.REQUEST.INTENT_NOTE_DETAIL_MODIFY);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    @OnClick(R.id.iv_bar_left_icon)
+    void back(){
+        finish();
     }
 
     @Override

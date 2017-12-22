@@ -5,9 +5,10 @@
     android:orientation="vertical">
 
         <View
+            android:id="@+id/v_tool_bar_top"
             android:layout_width="match_parent"
             android:layout_height="@dimen/toolbar_padding_top"
-            android:background="@color/primary_white"/>
+            android:background="@color/primary_black"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -19,6 +20,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_back"
+                    android:layout_marginLeft="@dimen/margin_10"
                     android:layout_centerVertical="true"
                     android:padding="@dimen/margin_10"/>
 
@@ -36,6 +38,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
+                    android:layout_marginRight="@dimen/margin_10"
                     android:layout_alignParentRight="true">
 
 

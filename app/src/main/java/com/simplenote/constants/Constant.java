@@ -74,6 +74,8 @@ public class Constant {
         public static final int TYPE_NOTE_DETAIL_ADD = 1;
         public static final int TYPE_NOTE_DETAIL_MODIFY = 2;
 
+        public static final int TYPE_SYNC_TIME_GET = 1;
+        public static final int TYPE_SYNC_TIME_UPDATE = 2;
     }
 
     public static class REQUEST{

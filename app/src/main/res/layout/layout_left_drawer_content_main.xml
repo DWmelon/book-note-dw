@@ -74,40 +74,52 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_left_good"/>
+                    android:src="@drawable/icon_left_oss"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_25"
-                    android:text="备份微记"
+                    android:text="备份"
                     android:textSize="16sp"
                     android:textColor="@color/primary_white"/>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_line_half"
+                android:layout_marginLeft="@dimen/margin_20"
+                android:background="@color/transparent_red_30"/>
 
             <LinearLayout
                 android:id="@+id/ll_left_advice"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/left_recycle_height"
-                android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/margin_20"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_left_good"/>
+                    android:src="@drawable/icon_left_advice" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_25"
-                    android:text="意见反馈"
-                    android:textSize="16sp"
-                    android:textColor="@color/primary_white"/>
+                    android:text="反馈"
+                    android:textColor="@color/primary_white"
+                    android:textSize="16sp" />
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_line_half"
+                android:layout_marginLeft="@dimen/margin_20"
+                android:background="@color/transparent_red_30"/>
 
             <LinearLayout
                 android:id="@+id/ll_left_setting"
@@ -120,7 +132,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_left_good"/>
+                    android:src="@drawable/icon_left_setting"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -141,9 +153,10 @@
 
 
             <LinearLayout
-
+                android:id="@+id/ll_sync_time"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:visibility="invisible"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -151,16 +164,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_left_yun"
-                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_marginLeft="@dimen/margin_10"
                     android:layout_marginTop="@dimen/margin_5"
                     android:layout_marginBottom="@dimen/margin_5"
                     android:scaleType="centerInside"/>
 
                 <TextView
+                    android:id="@+id/tv_sync_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_15"
-                    android:text="上次同步云：2017-08-01"
+                    android:layout_marginLeft="@dimen/margin_10"
                     android:textSize="14sp"
                     android:textColor="@color/primary_white"/>
 

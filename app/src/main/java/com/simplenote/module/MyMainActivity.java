@@ -15,6 +15,7 @@ import com.simplenote.application.MyClient;
 import com.simplenote.module.account.AccountManager;
 import com.simplenote.module.advice.AdviceActivity;
 import com.simplenote.module.home.OnSetupImageFinishListener;
+import com.simplenote.module.home.OnSyncTimeListener;
 import com.simplenote.module.left.SelectAvatarActivity;
 import com.simplenote.module.login.LoginActivity;
 import com.simplenote.module.login.OnLoginStateChangeListener;
@@ -26,6 +27,8 @@ import com.simplenote.util.TimeUtils;
 import com.simplenote.widgets.CircleImageView;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -35,7 +38,7 @@ import butterknife.OnClick;
  * Created by melon on 2017/1/3.
  */
 
-public class MyMainActivity extends MainBaseActivity implements OnLoginStateChangeListener,View.OnClickListener,OnSetupImageFinishListener{
+public class MyMainActivity extends MainBaseActivity implements OnLoginStateChangeListener,View.OnClickListener,OnSetupImageFinishListener,OnSyncTimeListener{
 
 
     private LinearLayout mLlLoginLayout;
@@ -56,6 +59,9 @@ public class MyMainActivity extends MainBaseActivity implements OnLoginStateChan
     @BindView(R.id.sdv_backdrop)
     SimpleDraweeView mSdvBackdrop;
 
+    @BindView(R.id.tv_sync_time)
+    TextView mTvSyncTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +69,7 @@ public class MyMainActivity extends MainBaseActivity implements OnLoginStateChan
         initView();
         initListener();
         handleLogin(MyClient.getMyClient().getLoginManager().isLogin());
+
     }
 
     private void initView(){
@@ -153,6 +160,7 @@ public class MyMainActivity extends MainBaseActivity implements OnLoginStateChan
             mLlLoginLayout.setVisibility(View.VISIBLE);
             mLlUnLoginLayout.setVisibility(View.GONE);
             updateUserInfo();
+            MyClient.getMyClient().getOSSManager().handleSyncTime(Constant.VALUE.TYPE_SYNC_TIME_GET,this);
         }else {
             mLlLoginLayout.setVisibility(View.GONE);
             mLlUnLoginLayout.setVisibility(View.VISIBLE);
@@ -221,5 +229,18 @@ public class MyMainActivity extends MainBaseActivity implements OnLoginStateChan
                 }
             }
         });
+    }
+
+    @Override
+    public void onSyncTimeFinish(boolean isSuccess, long time) {
+        if (!isSuccess){
+            findViewById(R.id.ll_sync_time).setVisibility(View.GONE);
+            return;
+        }
+        findViewById(R.id.ll_sync_time).setVisibility(View.VISIBLE);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(time);
+        String str = format.format(date);
+        mTvSyncTime.setText(getString(R.string.sync_time,str));
     }
 }

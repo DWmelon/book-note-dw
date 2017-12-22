@@ -13,6 +13,8 @@ import com.simplenote.application.BaseActivity;
 import com.simplenote.application.MyClient;
 import com.simplenote.util.EmailUtil;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -21,11 +23,17 @@ import butterknife.OnClick;
 
 public class AdviceActivity extends BaseActivity implements View.OnClickListener{
 
-    private Toolbar mToolbar;
+    @BindView(R.id.et_advice_1)
+    EditText mEtContent;
 
-    private EditText mEtContent;
-    private EditText mEtContact;
-    private TextView mTvSubmit;
+    @BindView(R.id.et_advice_2)
+    EditText mEtContact;
+
+    @BindView(R.id.tv_advice_btn)
+    TextView mTvSubmit;
+
+    @BindView(R.id.tv_tool_bar_title)
+    TextView mTvTitle;
 
     private EmailUtil m;
 
@@ -33,19 +41,13 @@ public class AdviceActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advice);
-        initView();
+        ButterKnife.bind(this);
         initData();
         initListener();
     }
 
-    private void initView(){
-        mEtContent = (EditText)findViewById(R.id.et_advice_1);
-        mEtContact= (EditText)findViewById(R.id.et_advice_2);
-        mTvSubmit = (TextView)findViewById(R.id.tv_advice_btn);
-    }
-
     private void initData(){
-        mToolbar.setTitle(R.string.advice_title);
+        mTvTitle.setText(R.string.advice_title);
     }
 
     private void initListener(){

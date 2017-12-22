@@ -44,7 +44,7 @@ public class SelectEmotionActivity extends SelectEmoBaseActivity {
 
     }
 
-    private void handleSelectInfo(){
+    void handleSelectInfo(){
         MyClient.getMyClient().getAddNoteManager().setEmotion(indexFirst);
         MyClient.getMyClient().getAddNoteManager().setWeather(indexSecond);
         MyClient.getMyClient().getAddNoteManager().setTheme(indexThird);
@@ -55,23 +55,6 @@ public class SelectEmotionActivity extends SelectEmoBaseActivity {
     @OnClick(R.id.iv_bar_left_icon)
     void back(){
         finish();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add_note, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_right:
-                handleSelectInfo();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
 }

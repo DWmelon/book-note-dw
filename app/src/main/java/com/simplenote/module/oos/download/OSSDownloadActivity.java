@@ -34,12 +34,15 @@ import butterknife.OnClick;
 public class OSSDownloadActivity extends BaseActivity implements OnGetUploadConfigListener,OnCheckIsSyncListener,OnUploadNoteListener,OnUploadFinishListener
 {
 
-    @BindView(R.id.iv_sync_up)
-    ImageView mIvSyncUp;
-
-    private AnimationDrawable animationDrawable;
+//    @BindView(R.id.iv_sync_up)
+//    ImageView mIvSyncUp;
+//
+//    private AnimationDrawable animationDrawable;
 
     private List<String> needUploadList = new ArrayList<>();
+
+    @BindView(R.id.tv_tool_bar_title)
+    TextView mTvTitle;
 
     @BindView(R.id.tv_sync_download_total)
     TextView mTvTotalCount;
@@ -55,17 +58,24 @@ public class OSSDownloadActivity extends BaseActivity implements OnGetUploadConf
     @BindView(R.id.tv_sync_download_progress)
     TextView mTvSyncSituaTip;
 
+    @BindView(R.id.tv_sync_download_start)
+    TextView mTvDownloadStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
         ButterKnife.bind(this);
+        mTvTitle.setText(R.string.sync_download_title);
 
+//        mIvSyncUp.setImageResource(R.drawable.sync_up);
+//        animationDrawable = (AnimationDrawable) mIvSyncUp.getDrawable();
 
-        mIvSyncUp.setImageResource(R.drawable.sync_up);
-        animationDrawable = (AnimationDrawable) mIvSyncUp.getDrawable();
+    }
 
+    @OnClick(R.id.iv_bar_left_icon)
+    void back(){
+        finish();
     }
 
     private int TYPE_ING = 0;
@@ -90,6 +100,8 @@ public class OSSDownloadActivity extends BaseActivity implements OnGetUploadConf
     @OnClick(R.id.tv_sync_download_check)
     void checkNotYetList(){
 
+        mTvDownloadStart.setSelected(false);
+        mTvDownloadStart.setClickable(false);
         // TODO: 2017/8/7 得把note信息存在数据库
         //获取所有日记
         List<NoteModel> noteModelList = MyClient.getMyClient().getNoteV1Manager().getNoteModels();
@@ -118,11 +130,14 @@ public class OSSDownloadActivity extends BaseActivity implements OnGetUploadConf
         }
 
         if (needUploadList.isEmpty()){
-            Toast.makeText(this,"服务器已经保存好最新日志",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"本地已经更新好最新日志",Toast.LENGTH_LONG).show();
             hideProgress();
             return;
         }
 
+        mTvDownloadStart.setSelected(true);
+        mTvDownloadStart.setClickable(true);
+        mTvTotalCount.setVisibility(View.VISIBLE);
         mTvTotalCount.setText(getString(R.string.sync_download_need_total_count,needUploadList.size()));
 
         this.needUploadList = needUploadList;
@@ -137,6 +152,8 @@ public class OSSDownloadActivity extends BaseActivity implements OnGetUploadConf
      */
     @OnClick(R.id.tv_sync_download_start)
     void handleSync(){
+        mTvDownloadStart.setSelected(false);
+        mTvDownloadStart.setClickable(false);
         handleTip(TYPE_ING);
         MyClient.getMyClient().getOSSManager().getUploadConfig(Constant.VALUE.OSS_CONFIG_TYPE_DOWNLOAD,this);
     }
@@ -195,6 +212,8 @@ public class OSSDownloadActivity extends BaseActivity implements OnGetUploadConf
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
+                mTvSuccessCount.setVisibility(View.VISIBLE);
+                mTvFailCount.setVisibility(View.VISIBLE);
                 mTvSuccessCount.setText(getString(R.string.sync_download_need_success_count,successCount));
                 mTvFailCount.setText(getString(R.string.sync_download_need_fail_count,failCount));
                 MyClient.getMyClient().getOssDownloadManager().downNoteInfo();
