@@ -47,7 +47,7 @@ public class Constant {
 
         public static final String NOTE_MODEL = "note_model";
 
-        public static final String PAGE_TYPE = "note_model";
+        public static final String PAGE_TYPE = "page_type";
 
     }
 

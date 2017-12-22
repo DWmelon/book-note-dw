@@ -32,10 +32,13 @@
                                 <EditText
                                     android:id="@+id/et_add_note_title"
                                     android:layout_width="match_parent"
-                                    android:layout_height="35dp"
-                                    android:layout_margin="@dimen/margin_10"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="@dimen/margin_15"
+                                    android:layout_marginRight="@dimen/margin_15"
                                     android:hint="@string/hint_add_note_title"
+                                    android:textSize="15sp"
                                     android:gravity="center_vertical"
+                                    android:lines="2"
                                     android:background="@null"/>
 
                                 <View
@@ -47,20 +50,20 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center_vertical"
-                                    android:layout_margin="@dimen/margin_10"
+                                    android:layout_margin="@dimen/margin_15"
                                     android:orientation="horizontal">
 
                                         <TextView
                                             android:id="@+id/tv_add_note_time_left"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:paddingTop="@dimen/margin_small"
-                                            android:paddingBottom="@dimen/margin_small"
+                                            android:paddingTop="@dimen/margin_2"
+                                            android:paddingBottom="@dimen/margin_2"
                                             android:paddingLeft="@dimen/margin_10"
                                             android:paddingRight="@dimen/margin_10"
                                             android:text="2017-01-01"
                                             android:textColor="@color/primary_blue_light"
-                                            android:textSize="16dp"
+                                            android:textSize="14sp"
                                             android:background="@drawable/bg_corner_gray_light"/>
 
                                         <TextView
@@ -68,13 +71,13 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="@dimen/margin_5"
-                                            android:paddingTop="@dimen/margin_small"
-                                            android:paddingBottom="@dimen/margin_small"
+                                            android:paddingTop="@dimen/margin_2"
+                                            android:paddingBottom="@dimen/margin_2"
                                             android:paddingLeft="@dimen/margin_10"
                                             android:paddingRight="@dimen/margin_10"
                                             android:text="13:23"
                                             android:textColor="@color/primary_blue_light"
-                                            android:textSize="16dp"
+                                            android:textSize="14sp"
                                             android:background="@drawable/bg_corner_gray_light"/>
 
                                         <LinearLayout
@@ -91,7 +94,8 @@
                                     android:id="@+id/rv_add_note_pic"
                                     android:layout_width="250dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/margin_15">
+                                    android:layout_marginLeft="@dimen/margin_15"
+                                    android:layout_marginBottom="@dimen/margin_10">
 
                                 </android.support.v7.widget.RecyclerView>
 
@@ -104,10 +108,10 @@
                             android:id="@+id/et_add_note_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/margin_10"
-                            android:layout_marginRight="@dimen/margin_10"
-                            android:layout_marginTop="@dimen/margin_10"
+                            android:layout_marginLeft="@dimen/margin_15"
+                            android:layout_marginRight="@dimen/margin_15"
                             android:hint="@string/hint_add_note_content"
+                            android:textSize="15sp"
                             android:background="@null"
                             android:gravity="start"/>
 
@@ -115,8 +119,8 @@
                             android:id="@+id/tv_add_note_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_5"
-                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:layout_marginLeft="@dimen/margin_15"
                             android:background="@drawable/bg_corner_dash_red"
                             android:paddingLeft="@dimen/margin_5"
                             android:paddingRight="@dimen/margin_5"

@@ -32,12 +32,15 @@
                                 <TextView
                                     android:id="@+id/tv_add_note_title"
                                     android:layout_width="match_parent"
-                                    android:layout_height="35dp"
-                                    android:layout_margin="@dimen/margin_10"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="@dimen/margin_20"
+                                    android:layout_marginRight="@dimen/margin_20"
                                     android:textColor="@color/first_title_color"
                                     android:textSize="16sp"
                                     android:text="嘎嘎嘎"
                                     android:gravity="center_vertical"
+                                    android:lines="2"
+                                    android:ellipsize="end"
                                     android:background="@null"/>
 
                                 <View
@@ -63,13 +66,13 @@
                                             android:id="@+id/tv_add_note_time_left"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:paddingTop="@dimen/margin_small"
-                                            android:paddingBottom="@dimen/margin_small"
+                                            android:paddingTop="@dimen/margin_2"
+                                            android:paddingBottom="@dimen/margin_2"
                                             android:paddingLeft="@dimen/margin_10"
                                             android:paddingRight="@dimen/margin_10"
                                             android:text="2017-01-01"
                                             android:textColor="@color/primary_blue_light"
-                                            android:textSize="16dp"
+                                            android:textSize="14sp"
                                             android:background="@drawable/bg_corner_gray_light"/>
 
                                         <TextView
@@ -77,13 +80,13 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="@dimen/margin_5"
-                                            android:paddingTop="@dimen/margin_small"
-                                            android:paddingBottom="@dimen/margin_small"
+                                            android:paddingTop="@dimen/margin_2"
+                                            android:paddingBottom="@dimen/margin_2"
                                             android:paddingLeft="@dimen/margin_10"
                                             android:paddingRight="@dimen/margin_10"
                                             android:text="13:23"
                                             android:textColor="@color/primary_blue_light"
-                                            android:textSize="16dp"
+                                            android:textSize="14sp"
                                             android:background="@drawable/bg_corner_gray_light"/>
 
                                         <LinearLayout
@@ -110,8 +113,8 @@
                             android:id="@+id/tv_add_note_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/margin_10"
-                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginLeft="@dimen/margin_15"
+                            android:layout_marginRight="@dimen/margin_15"
                             android:layout_marginTop="@dimen/margin_10"
                             android:textColor="@color/first_title_color"
                             android:textSize="15sp"
@@ -124,7 +127,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_5"
-                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginLeft="@dimen/margin_15"
                             android:background="@drawable/bg_corner_dash_red"
                             android:paddingLeft="@dimen/margin_5"
                             android:paddingRight="@dimen/margin_5"
