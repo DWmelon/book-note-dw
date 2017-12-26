@@ -9,6 +9,16 @@ import com.simplenote.module.manager.StorageManager;
 import com.simplenote.module.manager.TaskExecutor;
 import com.simplenote.util.FileUtil;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 /**
  * Created by melon on 2017/7/20.
  */
@@ -122,30 +132,76 @@ public class AccountManager {
     }
 
     public void getUserInfoFromFile(){
-
-        TaskExecutor.getInstance().post(new Runnable() {
+        Observable<UserInfo> observable = Observable.create(new ObservableOnSubscribe<UserInfo>() {
             @Override
-            public void run() {
+            public void subscribe(@NonNull ObservableEmitter<UserInfo> e) throws Exception {
                 String path = MyClient.getMyClient().getStorageManager().getPackageFiles() + mFileName;
-
                 Object oj = FileUtil.readObjectFromPath(path);
-                if (oj != null){
-                    userInfo = (UserInfo)oj;
-                    if (!TextUtils.isEmpty(userInfo.getToken())){
-                        MyClient.getMyClient().getLoginManager().setLogin(true);
-                    }else{
-                        userInfo = new UserInfo();
-                        MyClient.getMyClient().getLoginManager().setLogin(false);
-                    }
-                }else{
+                UserInfo userInfo;
+                if (oj == null){
                     userInfo = new UserInfo();
-                    MyClient.getMyClient().getLoginManager().setLogin(false);
+                }else{
+                    userInfo = (UserInfo)oj;
                 }
+                e.onNext(userInfo);
+                e.onComplete();
+            }
+        });
+        Observer<UserInfo> observer = new Observer<UserInfo>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
 
+            }
+
+            @Override
+            public void onNext(@NonNull UserInfo ui) {
+                if (TextUtils.isEmpty(ui.getToken())){
+                    MyClient.getMyClient().getLoginManager().setLogin(false);
+                }else{
+                    MyClient.getMyClient().getLoginManager().setLogin(true);
+                }
+                userInfo = ui;
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
                 //初始化用户相关路径
                 MyClient.getMyClient().getStorageManager().initAllDir();
             }
-        });
+        };
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+
+
+//        TaskExecutor.getInstance().post(new Runnable() {
+//            @Override
+//            public void run() {
+//                String path = MyClient.getMyClient().getStorageManager().getPackageFiles() + mFileName;
+//
+//                Object oj = FileUtil.readObjectFromPath(path);
+//                if (oj != null){
+//                    userInfo = (UserInfo)oj;
+//                    if (!TextUtils.isEmpty(userInfo.getToken())){
+//                        MyClient.getMyClient().getLoginManager().setLogin(true);
+//                    }else{
+//                        userInfo = new UserInfo();
+//                        MyClient.getMyClient().getLoginManager().setLogin(false);
+//                    }
+//                }else{
+//                    userInfo = new UserInfo();
+//                    MyClient.getMyClient().getLoginManager().setLogin(false);
+//                }
+//
+//                //初始化用户相关路径
+//                MyClient.getMyClient().getStorageManager().initAllDir();
+//            }
+//        });
     }
 
     public void logout(){
