@@ -15,20 +15,16 @@ public class RegisterResultModel extends BaseModel {
     private final String KEY_MAX_IMAGE_COUNT = "maxImageCount";
     private final String KEY_AVATAR_PATH = "avatarPath";
     private final String KEY_BACKDROP_PATH = "backdropPath";
-
+    private final String KEY_ACCOUNT = "account";
 
 
     private String token;
-
     private Long userId;
-
     private String nickName;
-
     private int maxImageCount;
-
     private String avatarPath;
-
     private String backdropPath;
+    private String account;
 
     @Override
     public void decode(JSONObject object) {
@@ -48,6 +44,15 @@ public class RegisterResultModel extends BaseModel {
         maxImageCount = object.getIntValue(KEY_MAX_IMAGE_COUNT);
         avatarPath = object.getString(KEY_AVATAR_PATH);
         backdropPath = object.getString(KEY_BACKDROP_PATH);
+        account = object.getString(KEY_ACCOUNT);
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getToken() {

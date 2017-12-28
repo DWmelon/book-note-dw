@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.simplenote.R;
 import com.simplenote.application.MyClient;
-import com.simplenote.model.NoteModel;
+import com.simplenote.database.model.Note;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -62,7 +62,7 @@ public class RecycleViewUtil {
     public static HashSet<Integer> getNoteChildHeaderIndex(){
         HashSet<Integer> indexSet = new HashSet<>();
 
-        HashMap<Date,List<NoteModel>> hashMapNotes = MyClient.getMyClient().getNoteV1Manager().getHashMapNotes();
+        HashMap<Date,List<Note>> hashMapNotes = MyClient.getMyClient().getNoteV1Manager().getHashMapNotes();
         int i = 0;
         if (hashMapNotes.keySet().isEmpty()){
             return indexSet;
@@ -86,7 +86,7 @@ public class RecycleViewUtil {
 
     public static List<Object> getNoteList(){
         List<Object> list = new ArrayList<>();
-        HashMap<Date,List<NoteModel>> hashMapNotes = MyClient.getMyClient().getNoteV1Manager().getHashMapNotes();
+        HashMap<Date,List<Note>> hashMapNotes = MyClient.getMyClient().getNoteV1Manager().getHashMapNotes();
         if (hashMapNotes.keySet().isEmpty()){
             return list;
         }

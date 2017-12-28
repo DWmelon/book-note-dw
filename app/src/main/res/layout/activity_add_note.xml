@@ -50,7 +50,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center_vertical"
-                                    android:layout_margin="@dimen/margin_15"
+                                    android:layout_marginLeft="@dimen/margin_15"
+                                    android:layout_marginTop="@dimen/margin_15"
                                     android:orientation="horizontal">
 
                                         <TextView
@@ -95,7 +96,7 @@
                                     android:layout_width="250dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/margin_15"
-                                    android:layout_marginBottom="@dimen/margin_10">
+                                    android:layout_marginTop="@dimen/margin_15">
 
                                 </android.support.v7.widget.RecyclerView>
 
@@ -110,6 +111,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/margin_15"
                             android:layout_marginRight="@dimen/margin_15"
+                            android:layout_marginTop="@dimen/margin_10"
                             android:hint="@string/hint_add_note_content"
                             android:textSize="15sp"
                             android:background="@null"

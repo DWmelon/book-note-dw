@@ -13,7 +13,9 @@ import com.simplenote.constants.Constant;
 import com.simplenote.R;
 import com.simplenote.application.BaseActivity;
 import com.simplenote.application.MyClient;
-import com.simplenote.model.NoteModel;
+import com.simplenote.database.NoteUtils;
+import com.simplenote.database.OnHandleDataFinishListener;
+import com.simplenote.database.model.Note;
 import com.simplenote.module.oos.callback.OnCheckIsSyncListener;
 import com.simplenote.module.oos.callback.OnGetUploadConfigListener;
 import com.simplenote.module.oos.callback.OnUploadFinishListener;
@@ -104,10 +106,10 @@ public class OSSDownloadActivity extends BaseActivity implements OnGetUploadConf
         mTvDownloadStart.setClickable(false);
         // TODO: 2017/8/7 得把note信息存在数据库
         //获取所有日记
-        List<NoteModel> noteModelList = MyClient.getMyClient().getNoteV1Manager().getNoteModels();
+        List<Note> noteModelList = MyClient.getMyClient().getNoteV1Manager().getNoteModels();
 
         List<UploadIdACodeModel> modelList = new ArrayList<>();
-        for (NoteModel model : noteModelList){
+        for (Note model : noteModelList){
             UploadIdACodeModel mo = new UploadIdACodeModel();
             mo.setNoteId(model.getNoteId());
             mo.setNoteCode(model.getNoteCode());
@@ -182,7 +184,7 @@ public class OSSDownloadActivity extends BaseActivity implements OnGetUploadConf
         if (isSuccess){
             successCount++;
 
-            NoteModel noteModel = MyClient.getMyClient().getOssDownloadManager().getNoteModel();
+            final Note noteModel = MyClient.getMyClient().getOssDownloadManager().getNoteModel();
             if (noteModel.getCode() == -1){
 //                // TODO: 2017/10/20 删除日记以及图片 只负责同步到本地，不覆盖本地
 //                MyClient.getMyClient().getAddNoteManager().removeNoteFromFile(noteModel.getNoteId(),false);
@@ -193,13 +195,17 @@ public class OSSDownloadActivity extends BaseActivity implements OnGetUploadConf
 //                }
             }else{
                 //如果已经存在，则删除
-                if (MyClient.getMyClient().getNoteV1Manager().isExistNote(noteModel.getNoteId())){
-                    MyClient.getMyClient().getAddNoteManager().removeNoteFromFile(noteModel.getNoteId(),false);
-                }
-
                 // TODO: 2017/10/20 只需保存日记，图片已经下载到本地
-                MyClient.getMyClient().getAddNoteManager().saveNoteFromFile(noteModel,false);
-                MyClient.getMyClient().getNoteV1Manager().insertNewNote(noteModel);
+                if (NoteUtils.isExist(noteModel.getNoteId())){
+                    NoteUtils.handleData(NoteUtils.OPERATE_UPDATE,noteModel,false,null);
+                }else{
+                    NoteUtils.handleData(NoteUtils.OPERATE_INSERT, noteModel, false, new OnHandleDataFinishListener() {
+                        @Override
+                        public void onDataFinish() {
+                            MyClient.getMyClient().getNoteV1Manager().insertNewNote(noteModel);
+                        }
+                    });
+                }
             }
         }else{
             failCount++;

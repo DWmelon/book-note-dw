@@ -1,8 +1,8 @@
 package com.simplenote.module.left;
 
 import com.simplenote.application.MyClient;
+import com.simplenote.database.model.Note;
 import com.simplenote.model.ImageModel;
-import com.simplenote.model.NoteModel;
 import com.simplenote.module.add.AddNoteManager;
 
 import java.util.ArrayList;
@@ -56,9 +56,9 @@ public class SelectManager {
         }
     }
 
-    public List<NoteModel> filterNoteModel(List<NoteModel> modelList){
-        List<NoteModel> noteList = new ArrayList<>();
-        for (NoteModel model : modelList){
+    public List<Note> filterNoteModel(List<Note> modelList){
+        List<Note> noteList = new ArrayList<>();
+        for (Note model : modelList){
             if (selectListEmotion.contains(model.getEmotion())){
                 noteList.add(model);
                 continue;

@@ -116,4 +116,7 @@
     <string name="paster_title">纸</string>
     <string name="paster_login_tip">登录后才能进行操作</string>
 
+    <!-- 设置 -->
+    <string name="setting_account">（%1$s）</string>
+
 </resources>

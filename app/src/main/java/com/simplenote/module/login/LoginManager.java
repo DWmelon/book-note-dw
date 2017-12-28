@@ -157,9 +157,10 @@ public class LoginManager {
                     accountManager.setNickName(model.getNickName(),false);
                     accountManager.setToken(model.getToken(),false);
                     accountManager.setMaxImageCount(model.getMaxImageCount(),true);
+                    accountManager.setAccount(model.getAccount(),true);
                     setLogin(true);
                     MyClient.getMyClient().getStorageManager().initAllDir();
-                    MyClient.getMyClient().getNoteV1Manager().getNoteFormFile();
+                    MyClient.getMyClient().getNoteV1Manager().getNoteFromDatabase();
                     dispatchOnRegisterListener(true, context.getString(R.string.signup_success));
                 }else{
                     dispatchOnRegisterListener(false, model.getMsg());
@@ -210,8 +211,9 @@ public class LoginManager {
                     accountManager.setMaxImageCount(model.getMaxImageCount(),false);
                     accountManager.setAvatarPath(model.getAvatarPath(),false);
                     accountManager.setBackdropPath(model.getBackdropPath(),true);
+                    accountManager.setAccount(model.getAccount(),true);
                     MyClient.getMyClient().getStorageManager().initAllDir();
-                    MyClient.getMyClient().getNoteV1Manager().getNoteFormFile();
+                    MyClient.getMyClient().getNoteV1Manager().getNoteFromDatabase();
                     setLogin(true);
                     dispatchOnRegisterListener(true, "");
                 }else{

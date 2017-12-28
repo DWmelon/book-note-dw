@@ -16,9 +16,18 @@ public class UserInfo implements Serializable {
     private String token = "";
     private String nickName = "";
     private int maxImageCount = 3;
+    private String account;
 
     private String avatarPath = "http://v1.qzone.cc/avatar/201310/12/15/42/5258fd6f0db4b914.jpg%21200x200.jpg";
     private String backdropPath;
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
     public String getToken() {
         return token;

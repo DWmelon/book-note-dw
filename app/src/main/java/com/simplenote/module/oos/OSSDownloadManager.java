@@ -13,7 +13,8 @@ import com.alibaba.sdk.android.oss.model.GetObjectRequest;
 import com.alibaba.sdk.android.oss.model.GetObjectResult;
 import com.simplenote.constants.Constant;
 import com.simplenote.application.MyClient;
-import com.simplenote.model.NoteModel;
+import com.simplenote.database.NoteUtils;
+import com.simplenote.database.model.Note;
 import com.simplenote.module.add.AddNoteManager;
 import com.simplenote.module.oos.callback.OnCheckIsSyncListener;
 import com.simplenote.module.oos.callback.OnUploadFinishListener;
@@ -44,10 +45,10 @@ public class OSSDownloadManager {
     private int uploadNoteIndex;
     private int uploadImageIndex;
     private List<String> idList;
-    private NoteModel noteModel;
+    private Note noteModel;
 
 
-    private NoteModel noteTempModel;
+    private Note noteTempModel;
     private boolean isModifying = false;
 
     /**
@@ -143,10 +144,10 @@ public class OSSDownloadManager {
                 }
 
 
-                noteModel = new NoteModel();
+                noteModel = new Note();
                 noteModel.decode(jsonObject);
                 if (noteModel.getCode() == 0) {
-                    if (!MyClient.getMyClient().getNoteV1Manager().isExistNote(id)){
+                    if (!NoteUtils.isExist(id)){
                         uploadImageIndex = 0;
                         handleActionImage(OSSManager.ACTION_ADD);
                     } else {
@@ -181,7 +182,7 @@ public class OSSDownloadManager {
 
     private void handleActionImage(String action){
 
-        if (uploadImageIndex>=noteModel.getImageNameList().size()){
+        if (uploadImageIndex>=noteModel.getImageList().size()){
 
             //修改操作，已经完成删除旧日记，下面这里判断是否修改操作，进行新增新日记操作
             if (noteTempModel != null && noteTempModel.getNoteId().equals(noteModel.getNoteId()) && isModifying){
@@ -197,7 +198,7 @@ public class OSSDownloadManager {
             return;
         }
 
-        String imageName = noteModel.getImageNameList().get(uploadImageIndex);
+        String imageName = noteModel.getImageList().get(uploadImageIndex);
         String targetPath = "image/"+MyClient.getMyClient().getAccountManager().getUserId()+"/"+imageName+ AddNoteManager.SUPPORT_TYPE;
 
         if (action.equals(OSSManager.ACTION_ADD)){
@@ -289,11 +290,11 @@ public class OSSDownloadManager {
         deleteTask.waitUntilFinished(); // 如果需要等待任务完成
     }
 
-    public NoteModel getNoteModel() {
+    public Note getNoteModel() {
         return noteModel;
     }
 
-    public void setNoteModel(NoteModel noteModel) {
+    public void setNoteModel(Note noteModel) {
         this.noteModel = noteModel;
     }
 }

@@ -18,7 +18,7 @@ import com.simplenote.constants.Constant;
 import com.simplenote.R;
 import com.simplenote.application.BaseActivity;
 import com.simplenote.application.MyClient;
-import com.simplenote.model.NoteModel;
+import com.simplenote.database.model.Note;
 import com.simplenote.module.add.AddNoteActivity;
 import com.simplenote.module.add.AddNoteManager;
 import com.simplenote.module.add.AddNotePicAdapter;
@@ -64,7 +64,7 @@ public class NoteDetailActivity extends BaseActivity {
     TextView mTvFontCount;
 
     private String noteId;
-    private NoteModel noteModel;    
+    private Note noteModel;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +135,7 @@ public class NoteDetailActivity extends BaseActivity {
 
     private List<String> filterImagePath(){
         List<String> realImagePaths = new ArrayList<>();
-        for (String str : noteModel.getImageNameList()){
+        for (String str : noteModel.getImageList()){
             realImagePaths.add(MyClient.getMyClient().getStorageManager().getImagePath() + str + AddNoteManager.SUPPORT_TYPE);
         }
         return realImagePaths;

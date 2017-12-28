@@ -5,15 +5,18 @@ import android.graphics.Bitmap;
 
 import com.alibaba.fastjson.JSONObject;
 import com.simplenote.R;
+import com.simplenote.application.MainApplication;
 import com.simplenote.application.MyClient;
+import com.simplenote.database.model.Note;
 import com.simplenote.model.ImageModel;
-import com.simplenote.model.NoteModel;
 import com.simplenote.model.UploadResultModel;
 import com.simplenote.module.manager.StorageManager;
 import com.simplenote.module.manager.TaskExecutor;
 import com.simplenote.network.IRequest;
 import com.simplenote.network.IRequestCallback;
 import com.simplenote.util.FileUtil;
+
+import org.greenrobot.greendao.rx.RxDao;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -70,17 +73,17 @@ public class AddNoteManager {
 
     }
 
-    private NoteModel noteModel;
+    private Note noteModel;
     private List<String> noteImagePaths = new ArrayList<>();
 
-    public NoteModel getNoteModel() {
+    public Note getNoteModel() {
         if (noteModel == null){
-            noteModel = new NoteModel();
+            noteModel = new Note();
         }
         return noteModel;
     }
 
-    public void setNoteModel(NoteModel noteModel) {
+    public void setNoteModel(Note noteModel) {
         this.noteModel = noteModel;
     }
 
@@ -157,7 +160,7 @@ public class AddNoteManager {
         return getImageResES(type,noteModel);
     }
 
-    public int getImageResES(int type,NoteModel model){
+    public int getImageResES(int type,Note model){
         switch (type){
             case TYPE_EMOTION:{
                 return getEmotionResES(model);
@@ -173,17 +176,17 @@ public class AddNoteManager {
     }
 
 
-    private int getEmotionResES(NoteModel noteModel){
+    private int getEmotionResES(Note noteModel){
         ImageModel model = emotionHashMap.get(noteModel.getEmotion());
         return model == null?-1:model.getExtraSmall();
     }
 
-    private int getWeatherResES(NoteModel noteModel){
+    private int getWeatherResES(Note noteModel){
         ImageModel model = weatherHashMap.get(noteModel.getWeather());
         return model == null?-1:model.getExtraSmall();
     }
 
-    private int getThemeResES(NoteModel noteModel){
+    private int getThemeResES(Note noteModel){
         ImageModel model = themeHashMap.get(noteModel.getTheme());
         return model == null?-1:model.getExtraSmall();
     }
@@ -212,42 +215,6 @@ public class AddNoteManager {
         return MyClient.getMyClient().getStorageManager().getImagePath() + name + SUPPORT_TYPE;
     }
 
-    private void handleRemoveNote(String id,boolean isUpdate){
-        MyClient.getMyClient().getNoteV1Manager().removeNote(id);
-        if (isUpdate){
-            displayOnAddNoteListener();
-        }
-    }
-
-
-
-    public void saveNoteFromFile(final NoteModel model, final boolean isUpdate){
-
-        TaskExecutor.getInstance().post(new Runnable() {
-            @Override
-            public void run() {
-                if (model != null) {
-                    String path = MyClient.getMyClient().getStorageManager().getNotePath() + model.getNoteId();
-                    FileUtil.writeObjectToPath(model, path);
-                    if (isUpdate){
-                        displayOnAddNoteListener();
-                    }
-                }
-            }
-        });
-    }
-
-    public void removeNoteFromFile(final String id, final boolean isUpdate){
-
-        TaskExecutor.getInstance().post(new Runnable() {
-            @Override
-            public void run() {
-                String path = MyClient.getMyClient().getStorageManager().getNotePath() + id;
-                FileUtil.deleteFile(new File(path));
-                handleRemoveNote(id,isUpdate);
-            }
-        });
-    }
 
     private List<OnAddNoteListener> onAddNoteListenerList = new ArrayList<>();
 
@@ -277,7 +244,7 @@ public class AddNoteManager {
     }
 
     public void clean(){
-        noteModel = new NoteModel();
+        noteModel = new Note();
         noteImagePaths.clear();
     }
 

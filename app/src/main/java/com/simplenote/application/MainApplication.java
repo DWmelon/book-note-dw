@@ -16,6 +16,7 @@ public class MainApplication extends Application{
 
     public static String PACKAGE_NAME = "";
 
+
   @Override
   public void onCreate() {
     super.onCreate();
@@ -73,5 +74,7 @@ public class MainApplication extends Application{
       PlatformConfig.setQQZone("1106429345", "rbkQeocuoGIwCJTe");
       PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
   }
+
+
 
 }

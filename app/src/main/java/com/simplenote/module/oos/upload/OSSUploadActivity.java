@@ -11,7 +11,9 @@ import com.simplenote.R;
 import com.simplenote.application.BaseActivity;
 import com.simplenote.application.MyClient;
 import com.simplenote.constants.Constant;
-import com.simplenote.model.NoteModel;
+import com.simplenote.database.NoteUtils;
+import com.simplenote.database.OnHandleDataFinishListener;
+import com.simplenote.database.model.Note;
 import com.simplenote.module.oos.callback.OnCheckIsSyncListener;
 import com.simplenote.module.oos.callback.OnGetUploadConfigListener;
 import com.simplenote.module.oos.callback.OnUploadFinishListener;
@@ -102,8 +104,9 @@ public class OSSUploadActivity extends BaseActivity implements OnGetUploadConfig
         mTvUploadStart.setClickable(false);
         // TODO: 2017/8/7 得把note信息存在数据库
         //获取所有日记
-        List<NoteModel> noteModelList = MyClient.getMyClient().getNoteV1Manager().getNoteModels();
-        List<NoteModel> deleteNoteList = MyClient.getMyClient().getNoteV1Manager().getDeleteNoteModels();
+        List<Note> noteModelList = NoteUtils.getAllNote(MyClient.getMyClient().getAccountManager().getUserId());
+//        MyClient.getMyClient().getNoteV1Manager().getNoteModels();
+        List<Note> deleteNoteList = MyClient.getMyClient().getNoteV1Manager().getDeleteNoteModels();
 
         if (noteModelList == null){
             noteModelList = new ArrayList<>();
@@ -120,7 +123,7 @@ public class OSSUploadActivity extends BaseActivity implements OnGetUploadConfig
         noteModelList.addAll(deleteNoteList);
 
         List<UploadIdACodeModel> modelList = new ArrayList<>();
-        for (NoteModel model : noteModelList){
+        for (Note model : noteModelList){
             UploadIdACodeModel mo = new UploadIdACodeModel();
             mo.setNoteId(model.getNoteId());
             mo.setNoteCode(model.getNoteCode());
@@ -204,8 +207,15 @@ public class OSSUploadActivity extends BaseActivity implements OnGetUploadConfig
         }
 
         if (status == -1){
-            String id = MyClient.getMyClient().getOssUploadManager().getIdByIndex(index);
-            MyClient.getMyClient().getAddNoteManager().removeNoteFromFile(id,false);
+            final String id = MyClient.getMyClient().getOssUploadManager().getIdByIndex(index);
+            Note note = new Note();
+            note.setNoteId(id);
+            NoteUtils.handleData(NoteUtils.OPERATE_REMOVE, note, false, new OnHandleDataFinishListener() {
+                @Override
+                public void onDataFinish() {
+                    MyClient.getMyClient().getNoteV1Manager().removeNote(id);
+                }
+            });
         }
 
         MyClient.getMyClient().getOssUploadManager().continueUpload();

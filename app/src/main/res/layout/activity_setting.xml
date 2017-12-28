@@ -41,8 +41,19 @@
                 android:layout_alignBottom="@+id/sdv_user_logo"
                 android:layout_marginLeft="@dimen/margin_10"
                 android:text="哈哈"
-                android:textSize="17sp"
+                android:textSize="20sp"
                 android:textColor="@color/first_title_color"/>
+
+            <TextView
+                android:id="@+id/tv_user_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_user_nickname"
+                android:layout_alignBaseline="@+id/tv_user_nickname"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:text="(13533192331)"
+                android:textSize="12sp"
+                android:textColor="@color/sub_title_color"/>
 
             <TextView
                 android:id="@+id/tv_logout"

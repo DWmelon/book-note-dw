@@ -16,7 +16,7 @@ import com.simplenote.application.MyClient;
 import com.simplenote.constants.Constant;
 import com.simplenote.R;
 import com.simplenote.application.BaseActivity;
-import com.simplenote.model.NoteModel;
+import com.simplenote.database.model.Note;
 import com.simplenote.module.add.AddNoteManager;
 import com.simplenote.module.home.OnSetupImageFinishListener;
 import com.simplenote.util.CommonUtil;
@@ -52,14 +52,14 @@ public class ThemeActivity extends BaseActivity {
     @BindView(R.id.iv_theme_photo)
     ImageView mIvPhoto;
 
-    private NoteModel noteModel;
+    private Note noteModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theme);
         ButterKnife.bind(this);
-        noteModel = (NoteModel) getIntent().getSerializableExtra(Constant.KEY.NOTE_MODEL);
+        noteModel = (Note) getIntent().getSerializableExtra(Constant.KEY.NOTE_MODEL);
         mTvTitle.setText(noteModel.getTitle());
         mTvContent.setText(noteModel.getContent());
 
@@ -79,7 +79,7 @@ public class ThemeActivity extends BaseActivity {
     }
 
     private void setupImage(){
-        String path = MyClient.getMyClient().getStorageManager().getImagePath() + noteModel.getImageNameList().get(0) + AddNoteManager.SUPPORT_TYPE;
+        String path = MyClient.getMyClient().getStorageManager().getImagePath() + noteModel.getImageList().get(0) + AddNoteManager.SUPPORT_TYPE;
         float ratio = getImageRatio(path);
 
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mIvPhoto.getLayoutParams();

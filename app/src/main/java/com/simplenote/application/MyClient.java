@@ -3,6 +3,7 @@ package com.simplenote.application;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.simplenote.database.DatabaseManager;
 import com.simplenote.module.account.AccountManager;
 import com.simplenote.module.add.AddNoteManager;
 import com.simplenote.module.left.SelectManager;
@@ -84,7 +85,7 @@ public class MyClient {
     private OSSUploadManager ossUploadManager;
     private OSSDownloadManager ossDownloadManager;
     private PasterManager pasterManager;
-
+    private DatabaseManager databaseManager;
 
     public  synchronized OSSManager getOSSManager(){
         if (ossManager == null){
@@ -162,6 +163,13 @@ public class MyClient {
             pasterManager = new PasterManager();
         }
         return pasterManager;
+    }
+
+    public synchronized DatabaseManager getDatabaseManager(){
+        if (databaseManager == null){
+            databaseManager = new DatabaseManager(context);
+        }
+        return databaseManager;
     }
 
 }

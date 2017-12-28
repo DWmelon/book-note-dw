@@ -3,21 +3,16 @@ package com.simplenote.module.account;
 import android.text.TextUtils;
 
 import com.simplenote.application.MyClient;
-import com.simplenote.model.NoteModel;
 import com.simplenote.module.login.LoginManager;
 import com.simplenote.module.manager.StorageManager;
 import com.simplenote.module.manager.TaskExecutor;
 import com.simplenote.util.FileUtil;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import rx.Observable;
+import rx.Observer;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by melon on 2017/7/20.
@@ -48,6 +43,19 @@ public class AccountManager {
     public void setUserId(Long userId,boolean isSaveData){
         checkInfoObj();
         userInfo.setUid(userId);
+        if (isSaveData){
+            saveUserInfoToFile();
+        }
+    }
+
+    public String getAccount(){
+        checkInfoObj();
+        return userInfo.getAccount();
+    }
+
+    public void setAccount(String account,boolean isSaveData){
+        checkInfoObj();
+        userInfo.setAccount(account);
         if (isSaveData){
             saveUserInfoToFile();
         }
@@ -132,9 +140,9 @@ public class AccountManager {
     }
 
     public void getUserInfoFromFile(){
-        Observable<UserInfo> observable = Observable.create(new ObservableOnSubscribe<UserInfo>() {
+        Observable<UserInfo> observable = Observable.create(new Observable.OnSubscribe<UserInfo>() {
             @Override
-            public void subscribe(@NonNull ObservableEmitter<UserInfo> e) throws Exception {
+            public void call(Subscriber<? super UserInfo> subscriber) {
                 String path = MyClient.getMyClient().getStorageManager().getPackageFiles() + mFileName;
                 Object oj = FileUtil.readObjectFromPath(path);
                 UserInfo userInfo;
@@ -143,18 +151,24 @@ public class AccountManager {
                 }else{
                     userInfo = (UserInfo)oj;
                 }
-                e.onNext(userInfo);
-                e.onComplete();
+                subscriber.onNext(userInfo);
+                subscriber.onCompleted();
             }
         });
         Observer<UserInfo> observer = new Observer<UserInfo>() {
             @Override
-            public void onSubscribe(@NonNull Disposable d) {
+            public void onCompleted() {
+                //初始化用户相关路径
+                MyClient.getMyClient().getStorageManager().initAllDir();
+            }
+
+            @Override
+            public void onError(Throwable e) {
 
             }
 
             @Override
-            public void onNext(@NonNull UserInfo ui) {
+            public void onNext(UserInfo ui) {
                 if (TextUtils.isEmpty(ui.getToken())){
                     MyClient.getMyClient().getLoginManager().setLogin(false);
                 }else{
@@ -162,18 +176,8 @@ public class AccountManager {
                 }
                 userInfo = ui;
             }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-                //初始化用户相关路径
-                MyClient.getMyClient().getStorageManager().initAllDir();
-            }
         };
+
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

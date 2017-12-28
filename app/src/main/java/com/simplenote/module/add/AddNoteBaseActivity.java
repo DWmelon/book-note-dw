@@ -23,8 +23,7 @@ import com.simplenote.constants.Constant;
 import com.simplenote.R;
 import com.simplenote.application.BaseActivity;
 import com.simplenote.application.MyClient;
-import com.simplenote.model.NoteModel;
-import com.simplenote.module.detail.NoteDetailActivity;
+import com.simplenote.database.model.Note;
 import com.simplenote.module.permission.OnRequestPermissionFinish;
 import com.simplenote.module.permission.PermissionManager;
 import com.simplenote.module.photo.Camera2FaceActivity;
@@ -75,7 +74,7 @@ public abstract class AddNoteBaseActivity extends BaseActivity implements InputS
     private ChooseTypeDialog chooseTypeDialog;
 
     protected int TYPE_ADD_NOTE = Constant.VALUE.TYPE_NOTE_DETAIL_ADD;
-    protected NoteModel originNoteModel;
+    protected Note originNoteModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +98,8 @@ public abstract class AddNoteBaseActivity extends BaseActivity implements InputS
         TYPE_ADD_NOTE = bundle.getInt(Constant.KEY.PAGE_TYPE,Constant.VALUE.TYPE_NOTE_DETAIL_ADD);
 
         if (TYPE_ADD_NOTE == Constant.VALUE.TYPE_NOTE_DETAIL_MODIFY){
-            originNoteModel = (NoteModel) bundle.getSerializable(Constant.KEY.NOTE_MODEL);
+            originNoteModel = (Note) bundle.getSerializable(Constant.KEY.NOTE_MODEL);
+            MyClient.getMyClient().getAddNoteManager().setNoteModel(originNoteModel);
         }
     }
 

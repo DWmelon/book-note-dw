@@ -18,10 +18,10 @@ import com.simplenote.constants.Constant;
 import com.simplenote.R;
 import com.simplenote.application.BaseActivity;
 import com.simplenote.application.MyClient;
+import com.simplenote.database.model.Note;
 import com.simplenote.module.add.AddNoteManager;
 import com.simplenote.module.detail.NoteDetailActivity;
 import com.simplenote.util.RecycleViewUtil;
-import com.simplenote.model.NoteModel;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -73,17 +73,17 @@ public class NoteRvListAdapter extends RecyclerView.Adapter<NoteRvListAdapter.Vi
             Date date = (Date) noteModels.get(position);
             holder.mTvHeader.setText(RecycleViewUtil.getHeaderDataStr(mContext,date));
         }else if (getItemViewType(position) == TYPE_ITEM){
-            handleData(holder,(NoteModel) noteModels.get(position));
+            handleData(holder,(Note) noteModels.get(position));
         }
     }
 
-    private void handleData(ViewHolder holder, final NoteModel model){
+    private void handleData(ViewHolder holder, final Note model){
         //图片
         if (model.getImageNameList().isEmpty()){
             holder.mImageContent.setVisibility(View.GONE);
         }else{
             holder.mImageContent.setVisibility(View.VISIBLE);
-            String uriStr = "file://"+ MyClient.getMyClient().getAddNoteManager().getImageLocalPath(model.getImageNameList().get(0));
+            String uriStr = "file://"+ MyClient.getMyClient().getAddNoteManager().getImageLocalPath(model.getImageList().get(0));
             Uri uri = Uri.parse(uriStr);
             holder.mSdvImg.setImageURI(uri);
         }

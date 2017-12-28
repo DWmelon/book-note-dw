@@ -16,7 +16,9 @@ import android.widget.TextView;
 import com.simplenote.constants.Constant;
 import com.simplenote.R;
 import com.simplenote.application.MyClient;
-import com.simplenote.model.NoteModel;
+import com.simplenote.database.NoteUtils;
+import com.simplenote.database.OnHandleDataFinishListener;
+import com.simplenote.database.model.Note;
 import com.simplenote.util.FileUtil;
 import com.simplenote.util.InputSoftKeyUtils;
 import com.simplenote.util.RandomUtils;
@@ -96,7 +98,7 @@ public class AddNoteActivity extends AddNoteBaseActivity{
         mTvDateHM.setText(TimeUtils.getNowTime(date,"HH:mm"));
 
         List<String> imagePathList = new ArrayList<>();
-        for (String name : originNoteModel.getImageNameList()){
+        for (String name : originNoteModel.getImageList()){
             imagePathList.add(MyClient.getMyClient().getStorageManager().getImagePath() + name + AddNoteManager.SUPPORT_TYPE);
         }
         MyClient.getMyClient().getAddNoteManager().setNoteImagePaths(imagePathList);
@@ -195,38 +197,42 @@ public class AddNoteActivity extends AddNoteBaseActivity{
     }
 
     private void addNote(){
-        NoteModel model = MyClient.getMyClient().getAddNoteManager().getNoteModel();
+        final Note model = MyClient.getMyClient().getAddNoteManager().getNoteModel();
         model.setTitle(mEtTitle.getText().toString().trim());
         model.setContent(mEtContent.getText().toString().trim());
-        model.getImageNameList().clear();
+        model.setImageNameList("");
 
 
         long time = model.getCreateDate();
         model.setNoteId(MyClient.getMyClient().getAccountManager().getUserId()+"_"+time);
         model.setNoteCode(RandomUtils.genRandomCode());
-
+        model.setUserId(MyClient.getMyClient().getAccountManager().getUserId());
         List<String> imagePathList = MyClient.getMyClient().getAddNoteManager().getNoteImagePaths();
         for (int i = 0;i < imagePathList.size();i++){
             String imageName = time+"_"+i;
             String path = MyClient.getMyClient().getStorageManager().getImagePath() + imageName + AddNoteManager.SUPPORT_TYPE;
             File file = new File(imagePathList.get(i));
             FileUtil.copyFile(file,path);
-            model.getImageNameList().add(imageName);
+            model.addImage(imageName);
         }
 
-        MyClient.getMyClient().getAddNoteManager().saveNoteFromFile(model,true);
-        MyClient.getMyClient().getNoteV1Manager().insertNewNote(model);
+        NoteUtils.handleData(NoteUtils.OPERATE_INSERT, model, new OnHandleDataFinishListener() {
+            @Override
+            public void onDataFinish() {
+                MyClient.getMyClient().getNoteV1Manager().insertNewNote(model);
+            }
+        });
+
         finish();
     }
 
     private void modifyNote(){
-        NoteModel model = MyClient.getMyClient().getAddNoteManager().getNoteModel();
+        final Note model = MyClient.getMyClient().getAddNoteManager().getNoteModel();
         model.setTitle(mEtTitle.getText().toString().trim());
         model.setContent(mEtContent.getText().toString().trim());
-        model.getImageNameList().clear();
+        model.setImageNameList("");
 
         long time = new Date().getTime();
-        model.setNoteId(originNoteModel.getNoteId());
         model.setNoteCode(RandomUtils.genRandomCode());
 
         List<String> imagePathList = MyClient.getMyClient().getAddNoteManager().getNoteImagePaths();
@@ -245,12 +251,18 @@ public class AddNoteActivity extends AddNoteBaseActivity{
             }
 
 
-            model.getImageNameList().add(imageName);
+            model.addImage(imageName);
         }
 
-        MyClient.getMyClient().getAddNoteManager().saveNoteFromFile(model,true);
-        MyClient.getMyClient().getNoteV1Manager().insertOldNote(model);
-        finish();
+        NoteUtils.handleData(NoteUtils.OPERATE_UPDATE, model, new OnHandleDataFinishListener() {
+            @Override
+            public void onDataFinish() {
+                MyClient.getMyClient().getNoteV1Manager().insertOldNote(model);
+                finish();
+            }
+        });
+
+
     }
 
     @Override

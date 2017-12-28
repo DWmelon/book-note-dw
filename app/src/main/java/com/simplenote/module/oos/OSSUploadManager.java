@@ -12,7 +12,7 @@ import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import com.simplenote.application.MyClient;
 import com.simplenote.constants.Constant;
-import com.simplenote.model.NoteModel;
+import com.simplenote.database.model.Note;
 import com.simplenote.module.add.AddNoteManager;
 import com.simplenote.module.oos.callback.OnCheckIsSyncListener;
 import com.simplenote.module.oos.callback.OnDeleteImageListener;
@@ -42,7 +42,7 @@ public class OSSUploadManager implements OnDeleteImageListener{
     private int uploadNoteIndex;
     private int uploadImageIndex;
     private List<String> idList;
-    private NoteModel noteModel;
+    private Note noteModel;
     private List<String> failImageList;
 
     private List<String> deleteImageList = new ArrayList<>();
@@ -148,7 +148,7 @@ public class OSSUploadManager implements OnDeleteImageListener{
     private void handleNoteModel(){
         //删除操作
         if (noteModel.getStatus() == -1){
-            deleteImageList.addAll(noteModel.getImageNameList());
+            deleteImageList.addAll(noteModel.getImageList());
             uploadNoteInfo();
             return;
         }
@@ -179,7 +179,7 @@ public class OSSUploadManager implements OnDeleteImageListener{
 
 
 
-                NoteModel model = new NoteModel();
+                Note model = new Note();
                 model.decode(jsonObject);
                 if (model.getCode() == -1){
                     uploadImage();
@@ -187,8 +187,8 @@ public class OSSUploadManager implements OnDeleteImageListener{
                     uploadImage();
 
                     //获取服务器中该日记的旧照片，看是否需要删除
-                    Set<String> imageSet = new HashSet<>(noteModel.getImageNameList());
-                    for (String imageName : model.getImageNameList()){
+                    Set<String> imageSet = new HashSet<>(noteModel.getImageList());
+                    for (String imageName : model.getImageList()){
                         if (!imageSet.contains(imageName)){
                             deleteImageList.add(imageName);
                         }
@@ -227,7 +227,7 @@ public class OSSUploadManager implements OnDeleteImageListener{
         map.put("emotion",noteModel.getEmotion());
         map.put("weather",noteModel.getWeather());
         map.put("theme",noteModel.getTheme());
-        map.put("imagePath",V2ArrayUtil.getJsonArrData(noteModel.getImageNameList()));
+        map.put("imagePath",noteModel.getImageNameList());
         map.put("userId",String.valueOf(noteModel.getUserId()));
         map.put("status",String.valueOf(noteModel.getStatus()));
         map.put(Constant.PARAM.TOKEN,MyClient.getMyClient().getAccountManager().getToken());
@@ -271,7 +271,7 @@ public class OSSUploadManager implements OnDeleteImageListener{
     private void uploadImage(){
 
         uploadImageIndex ++;
-        if (uploadImageIndex >= noteModel.getImageNameList().size()){
+        if (uploadImageIndex >= noteModel.getImageList().size()){
             uploadNoteInfo();
             return;
         }
@@ -283,7 +283,7 @@ public class OSSUploadManager implements OnDeleteImageListener{
 
 
 
-        String imageName = noteModel.getImageNameList().get(uploadImageIndex);
+        String imageName = noteModel.getImageList().get(uploadImageIndex);
         String targetPath = "image/"+MyClient.getMyClient().getAccountManager().getUserId()+"/"+imageName+ AddNoteManager.SUPPORT_TYPE;
 
         //覆盖，不判断重复
