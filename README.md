@@ -6,6 +6,12 @@
 
 Fork & Star，都无尽感谢。
 
+![Sample 2](art/Screenshot_1_180.png)![Sample 2](art/Screenshot_2_180.png)![Sample 2](art/Screenshot_3_180.png) ![Sample 2](art/Screenshot_4_180.png)
+
+![Sample 2](art/Screenshot_5_180.png)![Sample 2](art/Screenshot_6_180.png)![Sample 2](art/Screenshot_7_180.png)![Sample 2](art/Screenshot_8_180.png)
+
+![Sample 2](art/Screenshot_9_180.png)![Sample 2](art/Screenshot_10_180.png)![Sample 2](art/Screenshot_11_180.png)![Sample 2](art/Screenshot_12_180.png)
+
 ## Features
 * **记录日记**
 * **备份日记**（本地到云端）
