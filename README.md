@@ -4,7 +4,7 @@
 ## About
 一个学习性的应用，目的是提供一款`便捷、简约、高效的离线记录、在线备份的日记工具`，附加`贴纸库`，以便用户快速找到符合自己日记的贴纸。  
 
-Fork & Star，都无尽感谢。
+Fork & Star，都无尽感谢。[apk下载地址](https://fir.im/engm?)
 
 ![Sample 2](art/Screenshot_1_180.png) ![Sample 2](art/Screenshot_2_180.png) ![Sample 2](art/Screenshot_3_180.png) ![Sample 2](art/Screenshot_4_180.png)
 
