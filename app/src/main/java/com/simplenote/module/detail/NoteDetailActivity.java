@@ -111,6 +111,9 @@ public class NoteDetailActivity extends BaseActivity {
             findViewById(R.id.v_title_line2).setVisibility(View.VISIBLE);
         }else{
             mTvTitle.setText(noteModel.getTitle());
+            mTvTitle.setVisibility(View.VISIBLE);
+            findViewById(R.id.v_title_line).setVisibility(View.VISIBLE);
+            findViewById(R.id.v_title_line2).setVisibility(View.GONE);
         }
 
         
@@ -119,7 +122,9 @@ public class NoteDetailActivity extends BaseActivity {
             mTvFontCount.setVisibility(View.GONE);
         }else{
             mTvContent.setText(noteModel.getContent());
-            mTvFontCount.setText(String.valueOf(noteModel.getContent().length()));    
+            mTvFontCount.setText(String.valueOf(noteModel.getContent().length()));
+            mTvContent.setVisibility(View.VISIBLE);
+            mTvFontCount.setVisibility(View.VISIBLE);
         }
 
         Date date = new Date(noteModel.getCreateDate());

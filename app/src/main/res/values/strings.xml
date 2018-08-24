@@ -27,7 +27,7 @@
     <!-- 登录 -->
     <string name="login_phone_hint">输入手机号码</string>
     <string name="login_phone_psw_hint">请输入密码</string>
-    <string name="login_forget_psw">找回密码(仅限手机用户)</string>
+    <string name="login_forget_psw">找回密码</string>
     <string name="login">登录</string>
     <string name="signup_readed_agreement">注册或登录表示同意</string>
     <string name="signup_agreement_title">微记用户协议</string>

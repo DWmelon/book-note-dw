@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: __local_jars__:/Users/melon/Documents/myproject/SNotes/book-note-dw/PushSDK/libs/com.umeng.message_3.1.1a.jar:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/PushSDK/libs/com.umeng.message_3.1.1a.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

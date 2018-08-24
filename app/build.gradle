@@ -49,14 +49,13 @@ android {
     productFlavors {
 
         debugChannel {}
-        Store360 {}
-        QQ {}
-        BaiDu {}
-        xiaomi {}
-        huawei {}
-        meizu {}
-        wandoujia {}
-//        pc6 {}
+//        Store360 {}
+//        QQ {}
+//        BaiDu {}
+//        xiaomi {}
+//        huawei {}
+//        meizu {}
+//        wandoujia {}
     }
 
     productFlavors.all { flavor ->
