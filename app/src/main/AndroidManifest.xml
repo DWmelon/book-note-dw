@@ -112,6 +112,10 @@
         <activity android:name=".module.advice.AdviceActivity"
             android:screenOrientation="portrait"/>
 
+
+        <activity android:name=".module.test.TestActivity"
+            android:screenOrientation="portrait"/>
+
         <!-- umeng -->
         <activity
             android:name="com.umeng.socialize.media.WBShareCallBackActivity"

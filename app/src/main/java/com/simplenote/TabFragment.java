@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.simplenote.module.paster.PasterFragment;
 import com.simplenote.module.home.MyMainFragment;
+import com.simplenote.module.test.TestMiniShareFragment;
 import com.simplenote.widgets.RedPointImageView;
 
 import java.util.HashSet;
@@ -27,15 +28,20 @@ public class TabFragment extends Fragment implements View.OnClickListener,PageFr
 
     public static final String TAB_INFORMATION = PasterFragment.class.getName();
 
+    public static final String TAB_MINISHARE = TestMiniShareFragment.class.getName();
+
     private Context mContext;
     private View mContentView;
     private View mLastSelectView;
 
     private RedPointImageView mIvHome;
     private RedPointImageView mIvInfo;
+    private RedPointImageView mIvTest;
 
     private TextView mTvWrite;
     private TextView mTvMiao;
+    private TextView mTvTest;
+
 
     private PageFragment mLastShowFragment;
 
@@ -52,6 +58,7 @@ public class TabFragment extends Fragment implements View.OnClickListener,PageFr
     private void initContainFragmentTags() {
         mFragmentTags.add(TAB_HOME);
         mFragmentTags.add(TAB_INFORMATION);
+        mFragmentTags.add(TAB_MINISHARE);
     }
 
     private void checkAndHideFragment() {
@@ -71,6 +78,12 @@ public class TabFragment extends Fragment implements View.OnClickListener,PageFr
         if (information != null) {
             ft.hide(information);
             information.setOnTabSwitchListener(this);
+        }
+
+        PageFragment minishare = (PageFragment) fm.findFragmentByTag(TAB_MINISHARE);
+        if (minishare != null) {
+            ft.hide(minishare);
+            minishare.setOnTabSwitchListener(this);
         }
 
         ft.commit();
@@ -103,11 +116,15 @@ public class TabFragment extends Fragment implements View.OnClickListener,PageFr
         View info = mContentView.findViewById(R.id.ll_tab_item_me);
         info.setOnClickListener(this);
 
+        mContentView.findViewById(R.id.ll_tab_item_test).setOnClickListener(this);
+
         mIvHome = (RedPointImageView) home.findViewById(R.id.iv_tab_item_home);
         mIvInfo = (RedPointImageView) info.findViewById(R.id.iv_tab_item_me);
+        mIvTest = (RedPointImageView) mContentView.findViewById(R.id.iv_tab_item_test);
 
         mTvWrite = (TextView) home.findViewById(R.id.tv_tab_write);
         mTvMiao = (TextView) info.findViewById(R.id.tv_tab_miao);
+        mTvTest = (TextView) mContentView.findViewById(R.id.tv_tab_test);
 
     }
 
@@ -138,18 +155,30 @@ public class TabFragment extends Fragment implements View.OnClickListener,PageFr
                 switchTo(TAB_HOME, bundle);
                 mIvHome.setSelected(true);
                 mIvInfo.setSelected(false);
+                mIvTest.setSelected(false);
                 mTvWrite.setTextColor(getResources().getColor(R.color.primary_color));
                 mTvMiao.setTextColor(getResources().getColor(R.color.tab_bar_txt));
+                mTvTest.setTextColor(getResources().getColor(R.color.tab_bar_txt));
                 break;
 
             case R.id.ll_tab_item_me:
                 switchTo(TAB_INFORMATION, bundle);
                 mIvInfo.setSelected(true);
                 mIvHome.setSelected(false);
+                mIvTest.setSelected(false);
                 mTvWrite.setTextColor(getResources().getColor(R.color.tab_bar_txt));
                 mTvMiao.setTextColor(getResources().getColor(R.color.primary_color));
+                mTvTest.setTextColor(getResources().getColor(R.color.tab_bar_txt));
                 break;
-
+            case R.id.ll_tab_item_test:
+                switchTo(TAB_MINISHARE, bundle);
+                mIvInfo.setSelected(false);
+                mIvHome.setSelected(false);
+                mIvTest.setSelected(true);
+                mTvWrite.setTextColor(getResources().getColor(R.color.tab_bar_txt));
+                mTvMiao.setTextColor(getResources().getColor(R.color.tab_bar_txt));
+                mTvTest.setTextColor(getResources().getColor(R.color.primary_color));
+                break;
         }
         v.setSelected(true);
         mLastSelectView = v;
@@ -160,6 +189,8 @@ public class TabFragment extends Fragment implements View.OnClickListener,PageFr
             handleOnClick(mContentView.findViewById(R.id.ll_tab_item_home), bundle);
         } else if (TAB_INFORMATION.equals(name)){
             handleOnClick(mContentView.findViewById(R.id.ll_tab_item_me), bundle);
+        } else if (TAB_MINISHARE.equals(name)){
+            handleOnClick(mContentView.findViewById(R.id.ll_tab_item_test), bundle);
         }
     }
 
