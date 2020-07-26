@@ -40,14 +40,15 @@ public class PasterFragment extends PageFragment implements OnGetPasterListListe
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_intro,container,false);
+        View view = inflater.inflate(R.layout.fragment_intro,container,false);
+        ButterKnife.bind(this,view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mContentView = view;
-        ButterKnife.bind(this,view);
         initData();
         MyClient.getMyClient().getLoginManager().registerOnLoginStateChangeListener(this);
         MyClient.getMyClient().getPasterManager().getPasterList(0,this);

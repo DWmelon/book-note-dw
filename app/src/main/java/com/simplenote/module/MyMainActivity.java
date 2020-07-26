@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.simplenote.module.login.OnLoginStateChangeListener;
 import com.simplenote.module.login.SignActivity;
 import com.simplenote.module.oos.OSSActivity;
 import com.simplenote.module.setting.SettingActivity;
+import com.simplenote.util.CommonUtil;
 import com.simplenote.util.ImageUtils;
 import com.simplenote.util.TimeUtils;
 import com.simplenote.widgets.CircleImageView;
@@ -82,7 +84,6 @@ public class MyMainActivity extends MainBaseActivity implements OnLoginStateChan
         mLlUnLoginLayout = (LinearLayout)findViewById(R.id.ll_layout_unlogin);
         mTvGoLogin = (TextView)findViewById(R.id.tv_go_login);
         mTvGoSign = (TextView)findViewById(R.id.tv_go_sign);
-
 
     }
 

@@ -6,7 +6,7 @@
     <dimen name="default_corner_radius">6dp</dimen>
 
     <dimen name="bar_height">48dp</dimen>
-    <dimen name="tab_height">42dp</dimen>
+    <dimen name="tab_height">48dp</dimen>
 
     <dimen name="home_note_list_item_title_margin">15sp</dimen>
     <dimen name="home_note_list_item_real_height">140dp</dimen>

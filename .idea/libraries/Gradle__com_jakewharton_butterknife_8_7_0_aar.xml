@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.jakewharton:butterknife:8.7.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/da64df77c608d0afbf034acb96ae4fd567b0be8e/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/da64df77c608d0afbf034acb96ae4fd567b0be8e/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

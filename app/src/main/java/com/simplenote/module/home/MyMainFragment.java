@@ -23,6 +23,7 @@ import com.simplenote.module.add.AddNoteActivity;
 import com.simplenote.module.add.OnAddNoteListener;
 import com.simplenote.module.home.adapter.NoteRvListAdapter;
 import com.simplenote.module.listener.OnDataLoadFinishListener;
+import com.simplenote.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,7 +70,7 @@ public class MyMainFragment extends PageFragment implements OnDataLoadFinishList
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mContentView = view;
-        
+
         initBar(view);
         initView(view);
 

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_white">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_white"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_16"
+        android:paddingLeft="@dimen/margin_20"
+        android:paddingRight="@dimen/margin_20">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_signup_phone"
+                style="@style/LoginEditText"
+                android:background="@drawable/et_bg_login_leftright_top"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="@string/signup_phone_hint"
+                android:inputType="phone|number"
+                android:paddingLeft="@dimen/margin_45" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_16"
+                android:src="@drawable/icon_login_phone" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp">
+
+            <EditText
+                android:id="@+id/et_signup_verification_code"
+                style="@style/LoginEditText"
+                android:background="@drawable/et_bg_login_not_corner"
+                android:hint="@string/signup_captcha"
+                android:inputType="phone"
+                android:maxLength="6"
+                android:paddingLeft="@dimen/margin_45"
+                android:singleLine="true" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_16"
+                android:src="@drawable/icon_register_verification" />
+
+            <TextView
+                android:id="@+id/tv_signup_get_verification_code"
+                android:layout_width="@dimen/login_vc_btn_width"
+                android:layout_height="@dimen/login_vc_btn_high"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_10"
+                android:background="@drawable/bg_login_get_vc"
+                android:gravity="center"
+                android:text="@string/signup_get_captcha"
+                android:textColor="@color/login_get_vc_default_color" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp">
+
+            <EditText
+                android:id="@+id/et_signup_psw"
+                style="@style/LoginEditText"
+                android:background="@drawable/et_bg_login_leftright_bottom"
+                android:hint="@string/signup_psw_hint"
+                android:inputType="textPassword"
+                android:maxLength="18"
+                android:paddingLeft="@dimen/margin_45"
+                android:password="true" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_16"
+                android:src="@drawable/icon_vip_lock" />
+
+            <ImageView
+                android:id="@+id/iv_signup_psw_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingLeft="@dimen/margin_midddle"
+                android:paddingRight="@dimen/margin_15"
+                android:paddingTop="@dimen/margin_small"
+                android:src="@drawable/selector_iv_signup_psw_switch" />
+
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:id="@+id/btn_signup"
+            style="@style/LoginBtnActivity"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_32"
+            android:text="@string/signup" />
+
+        <include layout="@layout/layout_user_agreement" />
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

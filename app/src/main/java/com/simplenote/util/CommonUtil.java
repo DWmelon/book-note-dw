@@ -2,6 +2,7 @@ package com.simplenote.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Window;
@@ -19,35 +20,35 @@ import java.util.List;
 public class CommonUtil {
 
 
-    public static int getStatusBarHeight(Context context) {
-        Class<?> c = null;
-
-        Object obj = null;
-
-        Field field = null;
-
-        int x = 0, sbar = 0;
-
-        try {
-
-            c = Class.forName("com.android.internal.R$dimen");
-
-            obj = c.newInstance();
-
-            field = c.getField("status_bar_height");
-
-            x = Integer.parseInt(field.get(obj).toString());
-
-            sbar = context.getResources().getDimensionPixelSize(x);
-
-        } catch (Exception e1) {
-
-            e1.printStackTrace();
-
-        }
-
-        return sbar;
-    }
+//    public static int getStatusBarHeight(Context context) {
+//        Class<?> c = null;
+//
+//        Object obj = null;
+//
+//        Field field = null;
+//
+//        int x = 0, sbar = 0;
+//
+//        try {
+//
+//            c = Class.forName("com.android.internal.R$dimen");
+//
+//            obj = c.newInstance();
+//
+//            field = c.getField("status_bar_height");
+//
+//            x = Integer.parseInt(field.get(obj).toString());
+//
+//            sbar = context.getResources().getDimensionPixelSize(x);
+//
+//        } catch (Exception e1) {
+//
+//            e1.printStackTrace();
+//
+//        }
+//
+//        return sbar;
+//    }
 
 
     public static List<Integer> getScreenSize(Context context){
@@ -151,4 +152,15 @@ public class CommonUtil {
     }
 
 
+    /**
+     * 获取状态栏高度
+     * @param context
+     * @return
+     */
+    public static int getStatusBarHeight(Context context) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        int height = resources.getDimensionPixelSize(resourceId);
+        return height;
+    }
 }

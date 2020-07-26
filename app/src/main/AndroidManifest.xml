@@ -51,6 +51,7 @@
 
         <activity
             android:name=".module.MyMainActivity"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"/>
 
         <activity android:name=".module.add.AddNoteActivity"
